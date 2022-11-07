@@ -1,0 +1,13 @@
+name = "kpumuk"
+license = "MIT"
+description = "Personal blog theme"
+min_version = "0.57.1"
+
+[author]
+name = "Dmytro Shteflyuk"
+homepage = "https://dmytro.sh/"
+
+[original]
+author = "nanxiaobei"
+homepage = "https://github.com/nanxiaobei/hugo-paper/"
+repo = "https://github.com/nanxiaobei/hugo-paper/"

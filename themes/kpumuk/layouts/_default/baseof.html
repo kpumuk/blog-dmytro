@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+{{ $.Scratch.Delete "social_list" }}<!---->
+{{ $.Scratch.Delete "avatar_url" }}<!---->
+
+<!-- social_list -->
+{{ $social_params := slice "twitter" "github" "instagram" "rss" }}<!---->
+{{ range $social_params }}<!---->
+{{ if isset site.Params . }}<!---->
+{{ $.Scratch.Add "social_list" (slice .) }}<!---->
+{{ end }}<!---->
+{{ end }}<!---->
+
+<!-- avatar_url -->
+{{ if site.Params.avatar }}<!---->
+{{ if in site.Params.avatar "http" }}<!---->
+{{ $.Scratch.Set "avatar_url" site.Params.avatar }}<!---->
+{{ else }}<!---->
+{{ $md5 := (md5 site.Params.avatar) }}<!---->
+{{ $url := print "https://www.gravatar.com/avatar/" $md5 "?s=160&d=identicon" }}<!---->
+{{ $.Scratch.Set "avatar_url" $url }}<!---->
+{{ end }}<!---->
+{{ end }}<!---->
+
+<html lang="{{ site.LanguageCode }}" >
+  {{ partial "head.html" . }}
+  <body>
+    {{ partial "header.html" . }}
+
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    {{ partial "footer.html" . }}
+  </body>
+</html>

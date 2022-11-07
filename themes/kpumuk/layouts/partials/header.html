@@ -1,0 +1,32 @@
+<a class="btn-dark"></a>
+
+<script>
+  // base
+  const htmlClass = document.documentElement.classList;
+
+  // dark theme
+  const setDark = (isDark) => {
+    htmlClass[isDark ? 'add' : 'remove']('dark');
+    localStorage.setItem('dark', isDark);
+  };
+
+  // init
+  const darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  if (htmlClass.contains('dark')) {
+    setDark(true);
+  } else {
+    const darkVal = localStorage.getItem('dark');
+    setDark(darkVal ? darkVal === 'true' : darkScheme.matches);
+  }
+
+  // listen system
+  darkScheme.addEventListener('change', (event) => {
+    setDark(event.matches);
+  });
+
+  // manual switch
+  const btnDark = document.querySelector('.btn-dark');
+  btnDark.addEventListener('click', () => {
+    setDark(localStorage.getItem('dark') !== 'true');
+  });
+</script>

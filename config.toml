@@ -1,0 +1,19 @@
+baseURL = "https://dmytro.sh/"
+languageCode = "en-us"
+title = "Dmytro on Things"
+theme = "kpumuk"
+
+[author]
+name = "Dmytro Shteflyuk"
+
+[params]
+# social icons
+twitter = "kpumuk"
+github = "kpumuk"
+rss = true
+# home page profile
+avatar = "hi@dmytro.sh"
+name = "Dmytro Shteflyuk"
+bio = "Welcome to my personal corner of Internet, where I write on things that interest me."
+# misc
+disableHLJS = true

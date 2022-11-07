@@ -1,0 +1,51 @@
+{{ define "main" }}
+
+<!-- Tag Title -->
+{{ if and .Title (eq .Type "tags") }}
+<h1>{{ .Title }}</h1>
+{{ end }}
+
+<!-- $pages -->
+{{ $pages := union .RegularPages .Sections }}<!---->
+{{ if .IsHome }}<!---->
+{{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}<!---->
+{{ end }}
+
+<!-- Articles -->
+{{ $paginator := .Paginate $pages }} {{ range $index, $page := $paginator.Pages }}<!---->
+
+<!-- avatar -->
+{{ if and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) }}<!---->
+
+<header>
+  <h1>{{ site.Title }}</h1>
+  <p class="subheading">
+    {{ site.Params.bio | default (print "Personal blog by " site.Author.name) }}
+  </p>
+</header>
+
+{{ end }}
+
+<section>
+  <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+  <time>{{ .Date | time.Format ":date_medium" }}</time>
+  <p>
+    <blockquote>{{ .Summary }}</blockquote>
+    {{ if .Truncated }}<a href="{{ .Permalink }}">Read full post »</a>{{ end }}
+  </p>
+</section>
+{{ end }}
+
+<!-- Main Nav -->
+{{ if gt $paginator.TotalPages 1 }}
+<nav>
+  {{ if $paginator.HasPrev }}
+  <a class="btn" href="{{ $paginator.Prev.URL }}">← {{ i18n "prev_page" }}</a>
+  {{ end }}<!---->
+  {{ if $paginator.HasNext }}
+  <a class="btn" href="{{ $paginator.Next.URL }}">{{ i18n "next_page" }} →</a>
+  {{ end }}
+</nav>
+{{ end }}<!---->
+
+{{ end }}

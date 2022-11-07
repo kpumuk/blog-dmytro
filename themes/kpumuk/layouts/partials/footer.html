@@ -1,0 +1,21 @@
+<footer>
+  <div id="footer">
+    {{ $url := .RelPermalink }}<!---->
+    {{ with $.Scratch.Get "social_list" }}
+    <nav class="social">
+      {{ range . }}<!---->
+      <a
+        style="--url: url(./{{ . }}.svg)"
+        href="{{ if eq . `rss` }} {{ `index.xml` | absURL }} {{ else }} https://{{ . }}.com/{{ site.Params.Get . }} {{ end }}"
+        target="_blank"
+      ></a>
+      {{ end }}<!---->
+    </nav>
+    {{ end }}<!---->
+
+    <div class="copyright">
+      &copy; {{ now.Year }}
+      <a class="link" href="{{ `` | absURL }}">{{ site.Title }}</a>
+    </div>
+  </div>
+</footer>

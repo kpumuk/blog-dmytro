@@ -1,0 +1,64 @@
+{{ define "main" }}
+
+<article>
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{ if .Params.Subtitle }}<p class="subheading">{{ .Params.Subtitle }}</p>{{ end }}
+
+    {{ if ne .Type "page" }}
+    <p>
+      {{ if .Date }}
+      <time>{{ .Date | time.Format ":date_medium" }}</time>
+      {{ end }}<!---->
+      {{ if or .Params.Author site.Author.name }}
+      <span>&middot;</span>
+      <span>{{ .Params.Author | default site.Author.name }}</span>
+      {{ end }}
+    </p>
+    {{ end }}
+  </header>
+
+  <section>{{ .Content }}</section>
+
+  <!-- Post Tags -->
+  {{ if .Params.tags }}
+  <footer class="tags">
+    {{ range .Params.tags }} {{ $href := print (absURL "tags/") (urlize .) }}
+    <a href="{{ $href }}">{{ . }}</a>
+    {{ end }}
+  </footer>
+  {{ end }}
+
+  <!-- Post Nav -->
+  {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}<!---->
+  {{ if and (gt (len $pages) 1) (in $pages . ) }}
+  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+    {{ with $pages.Next . }}
+    <a class="flex w-1/2 items-center p-6 pr-3 no-underline" href="{{ .Permalink }}"
+      ><span class="mr-1.5">←</span><span>{{ .Name }}</span></a
+    >
+    {{ end }}<!---->
+    {{ with $pages.Prev . }}
+    <a
+      class="ml-auto flex w-1/2 items-center justify-end p-6 pl-3 no-underline"
+      href="{{ .Permalink }}"
+      ><span>{{ .Name }}</span><span class="ml-1.5">→</span></a
+    >
+    {{ end }}
+  </nav>
+  {{ end }}
+
+  <!-- Disqus -->
+  {{ if and site.DisqusShortname (not (eq .Params.comments false)) }}
+  <div id="disqus_thread"></div>
+  <script>
+    const disqusShortname = '{{ site.DisqusShortname }}';
+    const script = document.createElement('script');
+    script.src = 'https://' + disqusShortname + '.disqus.com/embed.js';
+    script.setAttribute('data-timestamp', +new Date());
+    document.head.appendChild(script);
+  </script>
+  {{ end }}
+</article>
+
+{{ end }}

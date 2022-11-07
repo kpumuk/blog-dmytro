@@ -1,0 +1,375 @@
+/* Intuitive box sizing
+   ========================================================================== */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Color palette
+   ========================================================================== */
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --accent-color: #c41d47;
+  --text-color: #445566;
+  --bg-color: #fffef8;
+  --bullet-color: #d4d4d4;
+  --counter-color: #737373;
+  --code-bg-color: #fff2ea;
+  --code-text-color: #445566;
+  --footer-bg-color: #223344;
+  --footer-text-color: #b4aaaa;
+  --footer-link-color: #fea2a9;
+}
+
+html.dark {
+  --accent-color: #fea2a9;
+  --text-color: #fffef8;
+  --bg-color: #1f222a;
+  --bullet-color: #666666;
+  --counter-bg-color: #a3a3a3;
+  --code-bg-color: #293c50;
+  --code-text-color: #fffef8;
+  --footer-bg-color: rgb(8.97, 11.53, 18.68);
+  --footer-text-color: #b4aaaa;
+  --footer-link-color: #fea2a9;
+}
+
+/* Typography
+   ========================================================================== */
+
+/* @font-face {
+  font-family: 'Calluna';
+  src: url('/fonts/Calluna-Regular-webfont.woff2') format('woff2'),
+    url('/fonts/Calluna-Regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Calluna';
+  src: url('/fonts/Fontspring-DEMO-Calluna-Black.otf');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Calluna';
+  src: url('/fonts/Fontspring-DEMO-Calluna-SemiboldIt.otf');
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Calluna';
+  src: url('/fonts/Fontspring-DEMO-Calluna-It.otf');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Calluna Sans';
+  src: url('/fonts/CallunaSansRegular-webfont.woff2') format('woff2'),
+    url('/fonts/CallunaSansRegular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+html {
+  /* https://tailwindcss.com/docs/font-family */
+  font-family: 'Calluna Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-feature-settings: 'liga', 'kern';
+  font-size: calc(1em + 1vw);
+}
+
+/*
+ * Fluid typography
+ * https://www.smashingmagazine.com/2016/05/fluid-typography/
+ *
+ * Font size: 16px-21px
+ * Screen size: 470px-1225px
+ */
+html {
+  font-size: 16px;
+}
+@media (min-width: 470px) {
+  html {
+    font-size: calc(16px + 5 * (100vw - 470px) / 755);
+  }
+}
+@media (min-width: 1225px) {
+  html {
+    font-size: 21px;
+  }
+}
+
+h1 {
+  font-size: 2.5rem;
+  line-height: 2.8rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.75rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
+h5 {
+  font-size: 1.25rem;
+}
+h2,
+h3,
+h4,
+h5 {
+  margin: 1.5rem 0 0.5rem 0;
+  font-weight: 300;
+}
+
+body {
+  line-height: 1.4;
+}
+
+header,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Calluna', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-feature-settings: 'dlig';
+}
+
+p {
+  padding-top: 0.4em;
+  margin: 0 0 1em 0;
+}
+ul,
+ol {
+  margin: 0.5rem 0 1rem;
+  padding-inline-start: 2rem;
+}
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  margin: 0;
+}
+
+ol > li,
+ul > li {
+  padding-left: 0.375em;
+}
+
+header .subheading {
+  font-weight: 300;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.8rem;
+}
+
+code,
+pre {
+  font-feature-settings: normal;
+  font-family: Fira Code, Menlo, Consolas, Monaco, ui-monospace, andale mono, ubuntu mono,
+    'Liberation Mono', 'Courier New', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  font-variant-ligatures: none;
+  word-wrap: normal;
+  tab-size: 4;
+  hyphens: none;
+}
+
+/* Layout
+   ========================================================================== */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+header {
+  text-align: center;
+  margin: 0 1em;
+}
+@media (min-width: 802px) {
+  header {
+    margin-top: 1.4em;
+    margin-bottom: 1.4em;
+  }
+}
+
+@media (min-width: 470px) {
+  header {
+    margin-left: 2.8em;
+    margin-right: 2.8em;
+  }
+}
+header p.subheading {
+  margin-bottom: 1rem;
+}
+header > p:not(.subheading) {
+  padding-top: 0.5em;
+  padding-bottom: 0.9em;
+  margin-bottom: 0;
+}
+
+main {
+  flex: auto;
+  max-width: 48rem;
+  margin: 1rem auto;
+}
+
+article {
+  color: var(--text-color) !important;
+  font-size: 1.2em;
+  padding: 0 1rem;
+}
+
+article blockquote {
+  margin: 0;
+  padding-left: 0.75rem;
+  font-style: italic;
+  border-left: 0.25rem solid var(--accent-color);
+  margin-left: -1rem;
+  margin-bottom: 1.6em;
+}
+
+article pre {
+  overflow-x: auto;
+  max-width: 100vw;
+  min-width: 250px;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding: 0.75rem 1rem 1rem 1rem;
+  border-left: 0.25rem solid var(--accent-color);
+}
+
+footer:not(.tags) {
+  background-color: var(--footer-bg-color);
+  color: var(--footer-text-color);
+  opacity: 100%;
+}
+
+#footer {
+  max-width: 48rem;
+  padding: 1.4em;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+code {
+  font-variant-ligatures: none;
+  font-style: normal;
+  font-size: calc(0.75em + 0.1vw);
+  line-height: calc(1.5em + 0.2vw);
+}
+
+html:not(.dark) .image-dark {
+  display: none;
+}
+.dark .image-light {
+  display: none;
+}
+
+figure {
+  text-align: center;
+  position: relative;
+  margin-left: -1.25rem;
+  margin-right: -1rem;
+  padding: 1rem;
+}
+
+figure > img {
+  margin: 0 auto;
+  width: auto;
+  max-width: 100vw;
+}
+
+figure > figcaption {
+  font-style: italic;
+}
+
+footer .copyright {
+  margin: 0 auto;
+}
+
+nav.social {
+  display: block;
+}
+
+nav.social a {
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  /* Painting the image by masking to switch color in Dark mode */
+  background-color: var(--footer-text-color);
+  -webkit-mask-image: var(--url);
+  mask-image: var(--url);
+}
+
+/* Theme
+   ========================================================================== */
+
+body {
+  border-top: 0.5rem solid var(--accent-color);
+}
+
+ol > li::marker {
+  color: var(--counter-color);
+}
+ul > li::marker {
+  color: var(--bullet-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  display: inline-block;
+}
+
+:not(pre) > code {
+  padding: 0 0.2725em;
+  background: var(--code-bg-color);
+  color: var(--code-text-color);
+}
+
+.highlight {
+  position: relative;
+}
+
+footer:not(.tags) a {
+  color: var(--footer-link-color);
+}
