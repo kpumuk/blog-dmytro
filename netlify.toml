@@ -1,0 +1,5 @@
+[[redirects]]
+from = "/*"
+to = "/stand-with-ukraine/"
+status = 301
+conditions = { Country = ["RU"] }
