@@ -301,15 +301,14 @@ html:not(.dark) .image-dark {
 figure {
   text-align: center;
   position: relative;
-  margin-left: -1.25rem;
-  margin-right: -1rem;
-  padding: 1rem;
+  margin: 0 1rem;
+  padding: 0;
 }
 
 figure > img {
   margin: 0 auto;
   width: auto;
-  max-width: 100vw;
+  max-width: 100%;
 }
 
 figure > figcaption {
