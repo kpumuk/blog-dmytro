@@ -6,6 +6,9 @@ theme = "kpumuk"
 [author]
 name = "Dmytro Shteflyuk"
 
+[permalinks]
+posts = "/blog/:slug"
+
 [params]
 # social icons
 twitter = "kpumuk"
