@@ -21,3 +21,16 @@ The blog fully supports user preferred dark/light theme. To support syntax highl
 ```
 
 This command will update `themes/kpumuk/assets/syntax.css` with syntax colors for both light and dark themes.
+
+## Hugo version
+
+Hugo version is installed via asdf in `.tool-versions`, and enforced on Netlify via `netlify.toml`. **Update in both places!**
+
+To install [asdf-hugo](https://github.com/nklmilojevic/asdf-hugo) plugin, run:
+
+```bash
+asdf plugin add hugo https://github.com/nklmilojevic/asdf-hugo.git
+
+# Get latest Hugo version
+asdf latest hugo
+```

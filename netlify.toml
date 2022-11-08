@@ -1,3 +1,11 @@
+[build]
+command = "hugo --gc"
+publish = "public"
+
+[context.production.environment]
+HUGO_ENV = "production"
+HUGO_VERSION = "0.105.0"
+
 [[redirects]]
 from = "/*"
 to = "/stand-with-ukraine/"
