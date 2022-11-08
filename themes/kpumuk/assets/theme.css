@@ -301,7 +301,7 @@ html:not(.dark) .image-dark {
 figure {
   text-align: center;
   position: relative;
-  margin: 0 1rem;
+  margin: 1rem 0;
   padding: 0;
 }
 
