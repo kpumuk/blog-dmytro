@@ -11,3 +11,13 @@ The source code for this site is licensed under version 3 of the the [GNU Genera
 Typekit is used for loading external fonts. Font families currently used on the site:
 
 - "Calluna" serif family with discretionary ligatures enabled is used in headers.
+
+## Syntax highlighting
+
+The blog fully supports user preferred dark/light theme. To support syntax highlighting, two color schemes are generated:
+
+```bash
+./scripts/generate_syntax.sh
+```
+
+This command will update `themes/kpumuk/assets/syntax.css` with syntax colors for both light and dark themes.

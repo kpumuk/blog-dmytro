@@ -25,3 +25,9 @@ bio = "Welcome to my personal corner of Internet, where I write on things that i
 disableHLJS = true
 repo = "https://github.com/kpumuk/blog-dmytro"
 font_css_url = "https://use.typekit.net/fzy3wla.css"
+
+[markup]
+
+[markup.highlight]
+noClasses = false
+tabWidth = 4
