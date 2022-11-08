@@ -2,6 +2,7 @@ baseURL = "https://dmytro.sh/"
 languageCode = "en-us"
 title = "Dmytro on Things"
 theme = "kpumuk"
+copyright = 'This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.'
 
 [author]
 name = "Dmytro Shteflyuk"
