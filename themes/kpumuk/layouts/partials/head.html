@@ -54,22 +54,22 @@
   <link rel="apple-touch-icon" href="{{ `apple-touch-icon.png` | absURL }}" />
 
   <!-- Webfonts -->
-  {{ $font_css_url := site.Params.Get "font_css_url" }}
+  {{ $font_css_url := site.Params.Get "font_css_url" -}}
   <!---->
-  {{ if $font_css_url }}
-  <link rel="preload stylesheet" href="{{ $font_css_url }}">
-  {{ end }}
+  {{ if $font_css_url -}}
+  <link rel="preload stylesheet" as="style" href="{{ $font_css_url }}" crossOrigin="anonymous">
+  {{ end -}}
 
   <!-- Generator -->
   {{ hugo.Generator }}
 
   <!-- RSS -->
-  {{ range .AlternativeOutputFormats }}
+  {{ range .AlternativeOutputFormats -}}
   <link
     rel="{{ .Rel }}"
     type="{{ .MediaType.Type }}"
     href="{{ .Permalink }}"
-    title="{{ site.Title }}"
+    title="{{ $.Site.Title }}"
   />
   {{ end }}
 
