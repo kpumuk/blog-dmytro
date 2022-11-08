@@ -6,6 +6,7 @@ copyright = 'This work is licensed under a Creative Commons Attribution-ShareAli
 
 [author]
 name = "Dmytro Shteflyuk"
+email = "hi@dmytro.sh"
 
 [permalinks]
 posts = "/blog/:slug"
@@ -16,7 +17,6 @@ twitter = "kpumuk"
 github = "kpumuk"
 rss = true
 # home page profile
-avatar = "hi@dmytro.sh"
 name = "Dmytro Shteflyuk"
 bio = "Welcome to my personal corner of Internet, where I write on things that interest me."
 # misc
