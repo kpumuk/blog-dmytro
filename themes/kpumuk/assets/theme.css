@@ -48,45 +48,11 @@ html.dark {
 /* Typography
    ========================================================================== */
 
-/* @font-face {
-  font-family: 'Calluna';
-  src: url('/fonts/Calluna-Regular-webfont.woff2') format('woff2'),
-    url('/fonts/Calluna-Regular-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Calluna';
-  src: url('/fonts/Fontspring-DEMO-Calluna-Black.otf');
-  font-weight: 700;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Calluna';
-  src: url('/fonts/Fontspring-DEMO-Calluna-SemiboldIt.otf');
-  font-weight: 500;
-  font-style: italic;
-}
-@font-face {
-  font-family: 'Calluna';
-  src: url('/fonts/Fontspring-DEMO-Calluna-It.otf');
-  font-weight: 300;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'Calluna Sans';
-  src: url('/fonts/CallunaSansRegular-webfont.woff2') format('woff2'),
-    url('/fonts/CallunaSansRegular-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-} */
-
 html {
   /* https://tailwindcss.com/docs/font-family */
-  font-family: 'Calluna Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
   font-feature-settings: 'liga', 'kern';
   font-size: calc(1em + 1vw);
 }
@@ -134,7 +100,7 @@ h3,
 h4,
 h5 {
   margin: 1.5rem 0 0.5rem 0;
-  font-weight: 300;
+  font-weight: normal;
 }
 
 body {
@@ -174,7 +140,7 @@ ul > li {
 }
 
 header .subheading {
-  font-weight: 300;
+  font-weight: normal;
   font-style: italic;
   font-size: 1.5rem;
   line-height: 1.8rem;

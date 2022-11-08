@@ -53,6 +53,13 @@
   <link rel="icon" href="{{ `favicon.png` | absURL }}" />
   <link rel="apple-touch-icon" href="{{ `apple-touch-icon.png` | absURL }}" />
 
+  <!-- Webfonts -->
+  {{ $font_css_url := site.Params.Get "font_css_url" }}
+  <!---->
+  {{ if $font_css_url }}
+  <link rel="preload stylesheet" href="{{ $font_css_url }}">
+  {{ end }}
+
   <!-- Generator -->
   {{ hugo.Generator }}
 
