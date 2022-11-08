@@ -307,6 +307,14 @@ nav.social .social-github {
   --url: url('/github.svg');
 }
 
+nav.social .social-instagram {
+  --url: url('/instagram.svg');
+}
+
+nav.social .social-mastodon {
+  --url: url('/mastodon.svg');
+}
+
 nav.social .social-rss {
   --url: url('/rss.svg');
 }

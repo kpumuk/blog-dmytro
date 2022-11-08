@@ -4,7 +4,7 @@
 {{ $.Scratch.Delete "avatar_url" }}<!---->
 
 <!-- social_list -->
-{{ $social_params := slice "twitter" "github" "instagram" "rss" }}<!---->
+{{ $social_params := slice "twitter" "mastodon" "github" "instagram" "rss" }}<!---->
 {{ range $social_params }}<!---->
 {{ if isset site.Params . }}<!---->
 {{ $.Scratch.Add "social_list" (slice .) }}<!---->

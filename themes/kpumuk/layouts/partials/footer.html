@@ -8,12 +8,19 @@
     {{ $url := .RelPermalink }}<!---->
     {{ with $.Scratch.Get "social_list" }}
     <nav class="social">
-      {{ range . }}<!---->
-      <a
-        class="social-{{ . }}"
-        href="{{ if eq . `rss` }} {{ `index.xml` | absURL }} {{ else }} https://{{ . }}.com/{{ site.Params.Get . }} {{ end }}"
-        target="_blank"
-      ></a>
+      {{ range . -}}<!---->
+      {{ $handle := site.Params.Get . -}}
+      {{ $url := printf `https://%s.com/%s` . $handle -}}
+      <!---->
+      {{ if eq . `rss` -}}
+      {{ $url = `index.xml` | absURL -}}
+      {{ else if eq . `mastodon` -}}
+      {{ $mastodonParts := split $handle `@` -}}
+      {{ $mastodonHandle := index $mastodonParts 1 -}}
+      {{ $mastodonSite := index $mastodonParts 2 -}}
+      {{ $url = printf `https://%s/web/@%s` $mastodonSite $mastodonHandle -}}
+      {{ end -}}
+      <a class="social-{{ . }}" href="{{ $url }}" target="_blank"></a>
       {{ end }}<!---->
     </nav>
     {{ end }}<!---->
