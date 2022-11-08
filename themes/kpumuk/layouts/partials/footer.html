@@ -7,7 +7,7 @@
     </div>
     {{ $url := .RelPermalink }}<!---->
     {{ with $.Scratch.Get "social_list" }}
-    <nav class="social">
+    <nav class="online">
       {{ range . -}}<!---->
       {{ $handle := site.Params.Get . -}}
       {{ $url := printf `https://%s.com/%s` . $handle -}}
@@ -20,7 +20,7 @@
       {{ $mastodonSite := index $mastodonParts 2 -}}
       {{ $url = printf `https://%s/web/@%s` $mastodonSite $mastodonHandle -}}
       {{ end -}}
-      <a class="social-{{ . }}" href="{{ $url }}" target="_blank"></a>
+      <a class="online-{{ . }}" href="{{ $url }}" target="_blank"></a>
       {{ end }}<!---->
     </nav>
     {{ end }}<!---->

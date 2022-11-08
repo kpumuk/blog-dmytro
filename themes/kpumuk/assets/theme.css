@@ -285,11 +285,11 @@ footer .copyright {
   margin: 0 auto;
 }
 
-nav.social {
+nav.online {
   display: block;
 }
 
-nav.social a {
+nav.online a {
   width: 2rem;
   height: 2rem;
   display: inline-block;
@@ -299,23 +299,23 @@ nav.social a {
   mask-image: var(--url);
 }
 
-nav.social .social-twitter {
+nav.online .online-twitter {
   --url: url('/twitter.svg');
 }
 
-nav.social .social-github {
+nav.online .online-github {
   --url: url('/github.svg');
 }
 
-nav.social .social-instagram {
+nav.online .online-instagram {
   --url: url('/instagram.svg');
 }
 
-nav.social .social-mastodon {
+nav.online .online-mastodon {
   --url: url('/mastodon.svg');
 }
 
-nav.social .social-rss {
+nav.online .online-rss {
   --url: url('/rss.svg');
 }
 
