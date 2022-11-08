@@ -299,6 +299,18 @@ nav.social a {
   mask-image: var(--url);
 }
 
+nav.social .social-twitter {
+  --url: url('/twitter.svg');
+}
+
+nav.social .social-github {
+  --url: url('/github.svg');
+}
+
+nav.social .social-rss {
+  --url: url('/rss.svg');
+}
+
 /* Theme
    ========================================================================== */
 

@@ -10,7 +10,7 @@
     <nav class="social">
       {{ range . }}<!---->
       <a
-        style="--url: url(./{{ . }}.svg)"
+        class="social-{{ . }}"
         href="{{ if eq . `rss` }} {{ `index.xml` | absURL }} {{ else }} https://{{ . }}.com/{{ site.Params.Get . }} {{ end }}"
         target="_blank"
       ></a>
