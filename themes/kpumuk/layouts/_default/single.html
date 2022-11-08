@@ -8,7 +8,7 @@
     {{ if ne .Type "page" }}
     <p>
       {{ if .Date }}
-      <time>{{ .Date | time.Format ":date_medium" }}</time>
+      <time>{{ .Date | time.Format ":date_long" }}</time>
       {{ end }}<!---->
       {{ if or .Params.Author site.Author.name }}
       <span>&middot;</span>

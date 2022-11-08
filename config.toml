@@ -20,7 +20,7 @@ mastodon = "@kpumuk@ruby.social"
 rss = true
 # home page profile
 name = "Dmytro Shteflyuk"
-bio = "Welcome to my personal corner of Internet, where I write on things that interest me."
+bio = "Welcome to my corner of the Internet, where I write about things that interest me."
 # misc
 disableHLJS = true
 repo = "https://github.com/kpumuk/blog-dmytro"

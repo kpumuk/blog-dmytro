@@ -6,35 +6,37 @@
 {{ end }}
 
 <!-- $pages -->
-{{ $pages := union .RegularPages .Sections }}<!---->
-{{ if .IsHome }}<!---->
-{{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}<!---->
-{{ end }}
+{{ $pages := union .RegularPages .Sections -}}<!---->
+{{ if .IsHome -}}<!---->
+{{ $pages = where site.RegularPages "Type" "in" site.Params.mainSections -}}<!---->
+{{ end -}}
 
-<!-- Articles -->
-{{ $paginator := .Paginate $pages }} {{ range $index, $page := $paginator.Pages }}<!---->
-
-<!-- avatar -->
-{{ if and $.IsHome (eq $paginator.PageNumber 1) (eq $index 0) }}<!---->
-
+{{ if $.IsHome -}}<!---->
 <header>
   <h1>{{ site.Title }}</h1>
   <p class="subheading">
     {{ site.Params.bio | default (print "Personal blog by " site.Author.name) }}
   </p>
 </header>
+{{ end -}}
 
-{{ end }}
+<!-- Articles -->
+<section class="article-list">
+  {{ $paginator := .Paginate $pages -}}
+  {{ range $index, $page := $paginator.Pages -}}<!---->
 
-<section>
-  <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-  <time>{{ .Date | time.Format ":date_medium" }}</time>
-  <p>
-    <blockquote>{{ .Summary }}</blockquote>
-    {{ if .Truncated }}<a href="{{ .Permalink }}">Read full post »</a>{{ end }}
-  </p>
+  <article>
+    <header>
+      <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+      <time>{{ .Date | time.Format ":date_long" }}</time>
+    </header>
+    <blockquote>
+      {{ .Summary }}
+      {{ if .Truncated }}<a href="{{ .Permalink }}">Read full post »</a>{{ end }}
+    </blockquote>
+  </article>
+  {{ end }}
 </section>
-{{ end }}
 
 <!-- Main Nav -->
 {{ if gt $paginator.TotalPages 1 }}

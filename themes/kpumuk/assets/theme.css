@@ -232,6 +232,33 @@ article pre {
   border-left: 0.25rem solid var(--accent-color);
 }
 
+.article-list article header {
+  margin: 2em 0 0;
+  text-align: left;
+}
+
+.article-list article header h2 {
+  margin-bottom: 0;
+}
+
+.article-list article header time {
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+.article-list article blockquote {
+  font-style: normal;
+  border-left: 0;
+  margin: 0;
+  padding-left: 0;
+}
+
+@media (min-width: 470px) {
+  .article-list article blockquote {
+    padding-left: 1.5em;
+  }
+}
+
 footer:not(.tags) {
   background-color: var(--footer-bg-color);
   color: var(--footer-text-color);
