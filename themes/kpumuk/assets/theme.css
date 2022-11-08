@@ -114,7 +114,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Calluna', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  font-family: calluna, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
   font-feature-settings: 'dlig';
 }
 
