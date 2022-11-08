@@ -1,13 +1,13 @@
 +++
 title = "Stand with Ukraine"
-subtitle = "On February 24, 2022 Russia declared an unprovoked war on Ukraine and launched a full-scale invasion. Russia is currently bombing peaceful Ukrainian cities, including schools and hospitals and attacking civilians who are fleeing conflict zones"
+subtitle = "On February 24, 2022, Russia declared an unprovoked war on Ukraine and launched a full-scale invasion. Russia is currently bombing peaceful Ukrainian cities, including schools and hospitals, and attacking civilians who are fleeing conflict zones"
 slug = "stand-with-ukraine"
 date = 2022-11-07T13:23:41-04:00
 +++
 
 ![Stand with Ukraine](/images/stand-with-ukraine.svg)
 
-Russia has invaded Ukraine and already killed tens of thousands of civilians, with many more raped or tortured. The death toll keeps climbing. It's **genocide**. Ukraine needs your help. Let's fight back the Russia regime.
+Russia has invaded Ukraine and already killed tens of thousands of civilians, with many more raped or tortured. The death toll keeps climbing. It's **genocide**. Ukraine needs your help. Let's fight back the Russian regime.
 
 <!--more-->
 
@@ -25,11 +25,11 @@ Here are some useful links for you:
   - [Add banners](https://stand-with-ukraine.pp.ua/AddBanner.html) to your OSS projects and profiles. See [examples](https://github.com/vshymanskyy/StandWithUkraine#projects-that-standwithukraine).
   - Protest against the war in your city.
   - Demand severe sanctions against Russia and support for Ukraine from your leaders.
-  - Reach out to Ukrainian friends, offer help.
+  - Reach out to Ukrainian friends, and offer help.
 - Boycott Russian businesses:
   - Cancel subscriptions and [stop giving your money to Russian companies](https://stand-with-ukraine.pp.ua/Boycott.html).
-  - Get rid of Russian [software, dependencies and infrastructure](https://stand-with-ukraine.pp.ua/Boycott.html).
-  - Suffocate Russian economy to limit its ability to fund the war!
+  - Get rid of Russian [software, dependencies, and infrastructure](https://stand-with-ukraine.pp.ua/Boycott.html).
+  - Suffocate the Russian economy to limit its ability to fund the war!
 - Resist propaganda:
   - Educate yourself and others on the Russian threat, read [reputable news](https://stand-with-ukraine.pp.ua/WarNews.html).
   - Check out [common misbeliefs](https://stand-with-ukraine.pp.ua/Misconceptions.html).
