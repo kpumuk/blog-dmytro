@@ -20,3 +20,4 @@ name = "Dmytro Shteflyuk"
 bio = "Welcome to my personal corner of Internet, where I write on things that interest me."
 # misc
 disableHLJS = true
+repo = "https://github.com/kpumuk/blog-dmytro"

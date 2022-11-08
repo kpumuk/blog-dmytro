@@ -21,6 +21,8 @@
     <div class="copyright">
       &copy; {{ now.Year }}
       <a class="link" href="{{ `` | absURL }}">{{ site.Title }}</a>
+      <span>&middot;</span>
+      <a href="{{ site.Params.Get "repo" }}" target="_blank">Source</a>
     </div>
   </div>
 </footer>
