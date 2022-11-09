@@ -27,6 +27,7 @@ html {
   --counter-color: #737373;
   --code-bg-color: #fff2ea;
   --code-text-color: #445566;
+  --table-border-color: #525252;
   --footer-bg-color: #223344;
   --footer-text-color: #b4aaaa;
   --footer-link-color: #fea2a9;
@@ -40,6 +41,7 @@ html.dark {
   --counter-bg-color: #a3a3a3;
   --code-bg-color: #293c50;
   --code-text-color: #fffef8;
+  --table-border-color: #525252;
   --footer-bg-color: rgb(8.97, 11.53, 18.68);
   --footer-text-color: #b4aaaa;
   --footer-link-color: #fea2a9;
@@ -344,6 +346,33 @@ nav.online .online-mastodon {
 
 nav.online .online-rss {
   --url: url('/rss.svg');
+}
+
+article table {
+  width: 100%;
+  table-layout: auto;
+  text-align: left;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  text-indent: 0;
+  border-color: inherit;
+  border-collapse: collapse;
+  /* margin-left: -1rem;
+  margin-right: -1rem; */
+}
+
+article table thead,
+article table tbody tr {
+  border-bottom: 1px solid var(--table-border-color);
+}
+
+article table thead th {
+  font-weight: bold;
+  vertical-align: bottom;
+  padding-bottom: 0.2em;
+}
+article table tbody td {
+  padding: 0.2em 0.2em 0.2em 0;
 }
 
 /* Theme
