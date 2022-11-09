@@ -34,3 +34,14 @@ asdf plugin add hugo https://github.com/nklmilojevic/asdf-hugo.git
 # Get latest Hugo version
 asdf latest hugo
 ```
+
+## Excalidraw diagrams
+
+1. Export `-dark.svg` and `-light.svg` versions of the diagram
+2. Embed fonts using `./scripts/embed_svg_fonts.sh`. Take note of the viewbox coordinates (this is image width,so that SVG does not stretch to infinity when embedded)
+3. Go to [Nano](https://vecta.io/nano) and minimize both dark and light diagrams (optimizes and removes unnecessary fonts)
+4. Embed using `figure` shortcode:
+
+   ```markdown
+   {{< figure lightsrc="/images/diagram-light.svg" darksrc="/images/diagram-dark.svg" width="514" >}}
+   ```
