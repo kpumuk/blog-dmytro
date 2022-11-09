@@ -33,18 +33,20 @@ html {
   --footer-link-color: #fea2a9;
 }
 
-html.dark {
-  --accent-color: #fea2a9;
-  --text-color: #fffef8;
-  --bg-color: #1f222a;
-  --bullet-color: #666666;
-  --counter-bg-color: #a3a3a3;
-  --code-bg-color: #293c50;
-  --code-text-color: #fffef8;
-  --table-border-color: #525252;
-  --footer-bg-color: rgb(8.97, 11.53, 18.68);
-  --footer-text-color: #b4aaaa;
-  --footer-link-color: #fea2a9;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent-color: #fea2a9;
+    --text-color: #fffef8;
+    --bg-color: #1f222a;
+    --bullet-color: #666666;
+    --counter-bg-color: #a3a3a3;
+    --code-bg-color: #293c50;
+    --code-text-color: #fffef8;
+    --table-border-color: #525252;
+    --footer-bg-color: rgb(8.97, 11.53, 18.68);
+    --footer-text-color: #b4aaaa;
+    --footer-link-color: #fea2a9;
+  }
 }
 
 /* Typography
@@ -286,11 +288,15 @@ code {
   line-height: calc(1.5em + 0.2vw);
 }
 
-html:not(.dark) .image-dark {
-  display: none;
+@media (prefers-color-scheme: light) {
+  .image-dark {
+    display: none;
+  }
 }
-.dark .image-light {
-  display: none;
+@media (prefers-color-scheme: dark) {
+  .image-light {
+    display: none;
+  }
 }
 
 figure {
