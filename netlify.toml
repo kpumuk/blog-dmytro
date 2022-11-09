@@ -7,6 +7,18 @@ HUGO_ENV = "production"
 HUGO_VERSION = "0.105.0"
 
 [[redirects]]
+from = "/main.min.css"
+to = "/main.min.css"
+status = 200
+force = true
+
+[[redirects]]
+from = "/images/stand-with-ukraine.svg"
+to = "/images/stand-with-ukraine.svg"
+status = 200
+force = true
+
+[[redirects]]
 from = "/*"
 to = "/stand-with-ukraine/"
 status = 301
