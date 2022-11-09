@@ -10,4 +10,5 @@ HUGO_VERSION = "0.105.0"
 from = "/*"
 to = "/stand-with-ukraine/"
 status = 301
+force = true
 conditions = { Country = ["RU"] }
