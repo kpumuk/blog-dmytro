@@ -1,0 +1,14 @@
+{{ $image := . }}
+{{ $width := 1 }}
+{{ $height := 1 }}
+{{ if strings.HasSuffix . ".svg"}}
+    {{ $svgContent := $image.Content }}
+    {{ $viewBoxSizes := split (index (split (index (split $svgContent `viewBox=`) 1) `"`) 1) ` ` }}
+    {{ $width = float (index $viewBoxSizes 2) }}
+    {{ $height = float (index $viewBoxSizes 3) }}
+{{ else }}
+    {{ $width = float $image.Width }}
+    {{ $height = float $image.Height }}
+{{ end }}
+
+{{ return (dict "Width" $width "Height" $height "HRatio" (div $height $width) "WRatio" (div $width $height)) }}

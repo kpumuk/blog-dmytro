@@ -3,34 +3,41 @@
         <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
     {{- end -}}
 
+
     {{- if .Get "lightsrc" -}}
-        <img src="{{ .Get "lightsrc" }}" class="image-light"
+        {{ $img := $.Page.Resources.GetMatch (.Get "lightsrc") }}
+        {{ $size := partial "sized-image" $img }}
+        <img src="{{ $img.RelPermalink }}" class="image-light"
             {{- if or (.Get "alt") (.Get "caption") }}
             alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
             {{- end -}}
-            {{- with .Get "width" }} width="{{ . }}"{{ end -}}
-            {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+            {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
+            {{- with .Get "height" }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
         /><!-- Closing img tag -->
     {{- end -}}
 
     {{- if .Get "darksrc" -}}
-        <img src="{{ .Get "darksrc" }}" class="image-dark"
+        {{ $img := $.Page.Resources.GetMatch (.Get "darksrc") }}
+        {{ $size := partial "sized-image" $img }}
+        <img src="{{ $img.RelPermalink }}" class="image-dark"
             {{- if or (.Get "alt") (.Get "caption") }}
             alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
             {{- end -}}
-            {{- with .Get "width" }} width="{{ . }}"{{ end -}}
-            {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+            {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
+            {{- with .Get "height" }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
         /><!-- Closing img tag -->
     {{- end -}}
 
     {{- if .Get "src" -}}
-        <img src="{{ .Get "src" }}"
+        {{ $img := $.Page.Resources.GetMatch (.Get "src") }}
+        {{ $size := partial "sized-image" $img }}
+        <img src="{{ $img.RelPermalink }}"
             {{- if or (.Get "alt") (.Get "caption") }}
             alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
             {{- end -}}
             {{- with .Get "srcset" }} srcset="{{ . }}"{{ end -}}
-            {{- with .Get "width" }} width="{{ . }}"{{ end -}}
-            {{- with .Get "height" }} height="{{ . }}"{{ end -}}
+            {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
+            {{- with .Get "height" }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
         /><!-- Closing img tag -->
     {{- end -}}
 
