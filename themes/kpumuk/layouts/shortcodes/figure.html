@@ -3,12 +3,11 @@
         <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
     {{- end -}}
 
-
     {{- if .Get "lightsrc" -}}
-        {{ $img := $.Page.Resources.GetMatch (.Get "lightsrc") }}
-        {{ $size := partial "sized-image" $img }}
-        <img src="{{ $img.RelPermalink }}" class="image-light"
-            {{- if or (.Get "alt") (.Get "caption") }}
+        {{- $img := $.Page.Resources.GetMatch (.Get "lightsrc") }}
+        {{- $size := partial "sized-image" $img }}
+        <img src="{{ $img.RelPermalink }}" class="image-light" loading="lazy"
+            {{- if or (.Get "alt") (.Get "caption") -}}
             alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
             {{- end -}}
             {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
@@ -17,10 +16,10 @@
     {{- end -}}
 
     {{- if .Get "darksrc" -}}
-        {{ $img := $.Page.Resources.GetMatch (.Get "darksrc") }}
-        {{ $size := partial "sized-image" $img }}
-        <img src="{{ $img.RelPermalink }}" class="image-dark"
-            {{- if or (.Get "alt") (.Get "caption") }}
+        {{- $img := $.Page.Resources.GetMatch (.Get "darksrc") }}
+        {{- $size := partial "sized-image" $img }}
+        <img src="{{ $img.RelPermalink }}" class="image-dark" loading="lazy"
+            {{- if or (.Get "alt") (.Get "caption") -}}
             alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
             {{- end -}}
             {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
@@ -29,10 +28,10 @@
     {{- end -}}
 
     {{- if .Get "src" -}}
-        {{ $img := $.Page.Resources.GetMatch (.Get "src") }}
-        {{ $size := partial "sized-image" $img }}
-        <img src="{{ $img.RelPermalink }}"
-            {{- if or (.Get "alt") (.Get "caption") }}
+        {{- $img := $.Page.Resources.GetMatch (.Get "src") }}
+        {{- $size := partial "sized-image" $img }}
+        <img src="{{ $img.RelPermalink }}" loading="lazy"
+            {{- if or (.Get "alt") (.Get "caption") -}}
             alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
             {{- end -}}
             {{- with .Get "srcset" }} srcset="{{ . }}"{{ end -}}
@@ -42,7 +41,7 @@
     {{- end -}}
 
     {{- if .Get "link" }}</a>{{ end -}}
-    {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+    {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") }}
         <figcaption>
             {{ with (.Get "title") -}}
                 <h4>{{ . }}</h4>
