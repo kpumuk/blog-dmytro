@@ -448,6 +448,11 @@ code {
 
 a > code {
   color: inherit;
+  text-decoration: inherit;
+}
+
+blockquote code {
+  font-style: inherit;
 }
 
 .highlight {
