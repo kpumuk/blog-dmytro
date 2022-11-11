@@ -5,25 +5,28 @@
         <img src="/images/stand-with-ukraine.svg" width="100" height="100" alt="I stand with Ukraine">
       </a>
     </div>
-    {{ $url := .RelPermalink }}<!---->
-    {{ with $.Scratch.Get "social_list" }}
+    <!---->
+    {{- $url := .RelPermalink }}
+    {{- with $.Scratch.Get "social_list" }}
     <nav class="online">
-      {{ range . -}}<!---->
-      {{ $handle := site.Params.Get . -}}
-      {{ $url := printf `https://%s.com/%s` . $handle -}}
-      <!---->
-      {{ if eq . `rss` -}}
-      {{ $url = `index.xml` | absURL -}}
-      {{ else if eq . `mastodon` -}}
-      {{ $mastodonParts := split $handle `@` -}}
-      {{ $mastodonHandle := index $mastodonParts 1 -}}
-      {{ $mastodonSite := index $mastodonParts 2 -}}
-      {{ $url = printf `https://%s/web/@%s` $mastodonSite $mastodonHandle -}}
-      {{ end -}}
-      <a class="online-{{ . }}" href="{{ $url }}" target="_blank"></a>
-      {{ end }}<!---->
+      {{- range . }}<!---->
+      {{- $handle := site.Params.Get . }}
+      {{- $url := printf `https://%s.com/%s` . $handle }}
+      {{- $rel := "me" }}
+
+      {{- if eq . `rss` }}
+      {{- $url = `index.xml` | absURL }}
+      {{- $rel = "" }}
+      {{- else if eq . `mastodon` }}
+      {{- $mastodonParts := split $handle `@` }}
+      {{- $mastodonHandle := index $mastodonParts 1 }}
+      {{- $mastodonSite := index $mastodonParts 2 }}
+      {{- $url = printf `https://%s/web/@%s` $mastodonSite $mastodonHandle }}
+      {{- end }}
+      <a class="online-{{ . }}" href="{{ $url }}" target="_blank"{{ with $rel }} rel="{{ . }}"{{ end }}></a>
+      {{- end }}<!---->
     </nav>
-    {{ end }}<!---->
+    {{- end }}<!---->
 
     <div class="copyright">
       &copy; {{ now.Year }}
