@@ -5,31 +5,53 @@
 
     {{- if .Get "lightsrc" -}}
         {{- $img := $.Page.Resources.GetMatch (.Get "lightsrc") }}
-        {{- $size := partial "sized-image" $img }}
-        <img src="{{ $img.RelPermalink }}" class="image-light" loading="lazy"
-            {{- if or (.Get "alt") (.Get "caption") -}}
-            alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
-            {{- end -}}
-            {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
-            {{- with .Get "height" }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
-        /><!-- Closing img tag -->
+        {{- $size := partial "image-size" $img }}
+        {{ if eq $img.MediaType.SubType "svg"}}
+            <object data="{{ $img.RelPermalink }}" type="image/svg+xml" class="image-light" loading="lazy"
+                {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
+                {{- with .Get "height" }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
+            >
+                {{- if or (.Get "alt") (.Get "caption") -}}
+                    {{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}
+                {{- end -}}
+            </object>
+        {{ else }}
+            <img src="{{ $img.RelPermalink }}" class="image-light" loading="lazy"
+                {{- if or (.Get "alt") (.Get "caption") -}}
+                alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
+                {{- end -}}
+                {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
+                {{- with .Get "height" }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
+            /><!-- Closing img tag -->
+        {{ end }}
     {{- end -}}
 
     {{- if .Get "darksrc" -}}
         {{- $img := $.Page.Resources.GetMatch (.Get "darksrc") }}
-        {{- $size := partial "sized-image" $img }}
-        <img src="{{ $img.RelPermalink }}" class="image-dark" loading="lazy"
-            {{- if or (.Get "alt") (.Get "caption") -}}
-            alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
-            {{- end -}}
-            {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
-            {{- with .Get "height" }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
-        /><!-- Closing img tag -->
+        {{- $size := partial "image-size" $img }}
+        {{ if eq $img.MediaType.SubType "svg"}}
+            <object data="{{ $img.RelPermalink }}" type="image/svg+xml" class="image-dark" loading="lazy"
+                {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
+                {{- with .Get "height" }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
+            >
+                {{- if or (.Get "alt") (.Get "caption") -}}
+                    {{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}
+                {{- end -}}
+            </object>
+        {{ else }}
+            <img src="{{ $img.RelPermalink }}" class="image-dark" loading="lazy"
+                {{- if or (.Get "alt") (.Get "caption") -}}
+                alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
+                {{- end -}}
+                {{- with .Get "width" }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
+                {{- with .Get "height" }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
+            /><!-- Closing img tag -->
+        {{ end }}
     {{- end -}}
 
     {{- if .Get "src" -}}
         {{- $img := $.Page.Resources.GetMatch (.Get "src") }}
-        {{- $size := partial "sized-image" $img }}
+        {{- $size := partial "image-size" $img }}
         <img src="{{ $img.RelPermalink }}" loading="lazy"
             {{- if or (.Get "alt") (.Get "caption") -}}
             alt="{{ with .Get "alt" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify | plainify }}{{ end }}"
