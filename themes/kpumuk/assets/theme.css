@@ -337,6 +337,11 @@ figure > img {
   max-width: 100%;
 }
 
+figure > object {
+  margin: 0 auto;
+  max-width: 100%;
+}
+
 figure > figcaption {
   font-style: italic;
 }

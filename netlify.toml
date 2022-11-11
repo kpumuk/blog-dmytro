@@ -6,6 +6,18 @@ publish = "public"
 HUGO_ENV = "production"
 HUGO_VERSION = "0.105.0"
 
+[context.deploy-preview]
+command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
+
+[context.deploy-preview.environment]
+HUGO_VERSION = "0.105.0"
+
+[context.branch-deploy]
+command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+
+[context.branch-deploy.environment]
+HUGO_VERSION = "0.105.0"
+
 [[redirects]]
 from = "/main.min.css"
 to = "/main.min.css"

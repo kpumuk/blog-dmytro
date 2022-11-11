@@ -1,0 +1,20 @@
+{{- $size := partial "image-size" .Image }}
+{{- if eq .Image.MediaType.SubType "svg"}}
+    <object data="{{ .Image.RelPermalink }}" type="image/svg+xml" class="{{ .Class }}" loading="lazy"
+        {{- with .Width }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
+        {{- with .Height }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
+    >
+        {{- if or .Alt .Caption -}}
+            {{ with .Alt }}{{ . }}{{ else }}{{ .Caption | markdownify | plainify }}{{ end }}
+        {{- end -}}
+    </object>
+{{- else }}
+    <img src="{{ .Image.RelPermalink }}" class="{{ .Class }}" loading="lazy"
+        {{- if or .Alt .Caption -}}
+        alt="{{ with .Alt }}{{ . }}{{ else }}{{ .Caption | markdownify | plainify }}{{ end }}"
+        {{- end -}}
+        {{- with .Width }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
+        {{- with .Height }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
+        {{- with .Srcset }} srcset="{{ . }}"{{ end -}}
+        /><!-- Closing img tag -->
+{{- end }}
