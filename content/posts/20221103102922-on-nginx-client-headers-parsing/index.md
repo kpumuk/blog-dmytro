@@ -321,11 +321,11 @@ Memory usage looks normal. After all, this is what nginx was built for: relative
 
 ### Large headers with `client_header_buffer_size` tuned
 
-| Value  |      #/s | 99.5pct |
-| ------ | -------: | ------: |
-| `1k`   | 49184.25 |    10ms |
-| `10k`  | 49075.34 |    10ms |
-| `128k` | 48930.94 |    10ms |
+| Value  |       #/s | 99.5pct |
+| ------ | --------: | ------: |
+| `1k`   | 49,184.25 |    10ms |
+| `10k`  | 49,075.34 |    10ms |
+| `128k` | 48,930.94 |    10ms |
 
 This gets very interesting. With default settings, nginx starts consuming 5x more memory than it normally would, while with tuned settings the memory usage did not change from the previous test. If we take a look at the benchmark, there are 3 headers: small, large (taking the whole large buffer), and small. Following the nginx algorithm, we know it will allocate 3 buffers for this case: default (1k), large (8k, to put header `B` in there), and another large (for header `C`).
 
