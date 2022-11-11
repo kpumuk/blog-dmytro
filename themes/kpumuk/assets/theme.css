@@ -27,6 +27,7 @@ html {
   --counter-color: #737373;
   --code-bg-color: #fff2ea;
   --code-text-color: #445566;
+  --pre-line-wrap-color: #87836f;
   --table-border-color: #525252;
   --footer-bg-color: #223344;
   --footer-text-color: #b4aaaa;
@@ -42,6 +43,7 @@ html {
     --counter-bg-color: #a3a3a3;
     --code-bg-color: #293c50;
     --code-text-color: #fffef8;
+    --pre-line-wrap-color: #595543;
     --table-border-color: #525252;
     --footer-bg-color: rgb(8.97, 11.53, 18.68);
     --footer-text-color: #b4aaaa;
@@ -164,6 +166,29 @@ pre {
   word-wrap: normal;
   tab-size: 4;
   hyphens: none;
+}
+
+/* Wrap lines and prepend them with a small arrow "↳" to indicate the line-break.
+ * This should allow better code reading on mobile (I hope)
+ */
+pre .line {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding-left: 1.5em;
+  text-indent: -1.5em;
+  overflow: hidden;
+  position: relative;
+}
+
+pre .line:before {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  line-height: inherit;
+  font-size: inherit;
+  white-space: pre;
+  color: var(--pre-line-wrap-color);
+  content: '\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3\A\21B3';
 }
 
 /* Layout
