@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"  standalone="no"?>
+<svg 
+ width="800" height="320"
+ viewBox="0 0 800 320"
+ xmlns="http://www.w3.org/2000/svg"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+
+<title>Gnuplot</title>
+<desc>Produced by GNUPLOT 5.4 patchlevel 5 </desc>
+
+<g id="gnuplot_canvas">
+
+<rect x="0" y="0" width="800" height="320" fill="none"/>
+<defs>
+
+	<circle id='gpDot' r='0.5' stroke-width='0.5' stroke='currentColor'/>
+	<path id='gpPt0' stroke-width='0.222' stroke='currentColor' d='M-1,0 h2 M0,-1 v2'/>
+	<path id='gpPt1' stroke-width='0.222' stroke='currentColor' d='M-1,-1 L1,1 M1,-1 L-1,1'/>
+	<path id='gpPt2' stroke-width='0.222' stroke='currentColor' d='M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1'/>
+	<rect id='gpPt3' stroke-width='0.222' stroke='currentColor' x='-1' y='-1' width='2' height='2'/>
+	<rect id='gpPt4' stroke-width='0.222' stroke='currentColor' fill='currentColor' x='-1' y='-1' width='2' height='2'/>
+	<circle id='gpPt5' stroke-width='0.222' stroke='currentColor' cx='0' cy='0' r='1'/>
+	<use xlink:href='#gpPt5' id='gpPt6' fill='currentColor' stroke='none'/>
+	<path id='gpPt7' stroke-width='0.222' stroke='currentColor' d='M0,-1.33 L-1.33,0.67 L1.33,0.67 z'/>
+	<use xlink:href='#gpPt7' id='gpPt8' fill='currentColor' stroke='none'/>
+	<use xlink:href='#gpPt7' id='gpPt9' stroke='currentColor' transform='rotate(180)'/>
+	<use xlink:href='#gpPt9' id='gpPt10' fill='currentColor' stroke='none'/>
+	<use xlink:href='#gpPt3' id='gpPt11' stroke='currentColor' transform='rotate(45)'/>
+	<use xlink:href='#gpPt11' id='gpPt12' fill='currentColor' stroke='none'/>
+	<path id='gpPt13' stroke-width='0.222' stroke='currentColor' d='M0,1.330 L1.265,0.411 L0.782,-1.067 L-0.782,-1.076 L-1.265,0.411 z'/>
+	<use xlink:href='#gpPt13' id='gpPt14' fill='currentColor' stroke='none'/>
+	<filter id='textbox' filterUnits='objectBoundingBox' x='0' y='0' height='1' width='1'>
+	  <feFlood flood-color='white' flood-opacity='1' result='bgnd'/>
+	  <feComposite in='SourceGraphic' in2='bgnd' operator='atop'/>
+	</filter>
+	<filter id='greybox' filterUnits='objectBoundingBox' x='0' y='0' height='1' width='1'>
+	  <feFlood flood-color='lightgrey' flood-opacity='1' result='grey'/>
+	  <feComposite in='SourceGraphic' in2='grey' operator='atop'/>
+	</filter>
+</defs>
+<g fill="none" color="white" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,284.00 L774.82,284.00  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,284.00 L88.70,284.00  '/>	<g transform="translate(71.31,287.90)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >0.0B</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,259.82 L430.22,259.82 M766.43,259.82 L774.82,259.82  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,259.82 L88.70,259.82  '/>	<g transform="translate(71.31,263.72)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >10.5MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,235.64 L774.82,235.64  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,235.64 L88.70,235.64  '/>	<g transform="translate(71.31,239.54)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >21.0MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,211.46 L774.82,211.46  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,211.46 L88.70,211.46  '/>	<g transform="translate(71.31,215.36)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >31.5MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,187.28 L774.82,187.28  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,187.28 L88.70,187.28  '/>	<g transform="translate(71.31,191.18)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >41.9MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,163.10 L774.82,163.10  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,163.10 L88.70,163.10  '/>	<g transform="translate(71.31,167.00)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >52.4MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,138.91 L774.82,138.91  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,138.91 L88.70,138.91  '/>	<g transform="translate(71.31,142.81)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >62.9MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,114.73 L774.82,114.73  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,114.73 L88.70,114.73  '/>	<g transform="translate(71.31,118.63)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >73.4MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,90.55 L774.82,90.55  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,90.55 L88.70,90.55  '/>	<g transform="translate(71.31,94.45)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >83.9MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,66.37 L774.82,66.37  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,66.37 L88.70,66.37  '/>	<g transform="translate(71.31,70.27)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >94.4MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,42.19 L774.82,42.19  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,42.19 L88.70,42.19  '/>	<g transform="translate(71.31,46.09)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >104.9MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="rgb(128, 128, 128)" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="0.50" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' class="gridline"  d='M79.70,18.01 L774.82,18.01  '/></g>
+<g fill="none" color="black" stroke="rgb(128, 128, 128)" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,18.01 L88.70,18.01  '/>	<g transform="translate(71.31,21.91)" stroke="none" fill="rgb(128,128,128)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >115.3MB</tspan></text>
+	</g>
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(128, 128, 128)' stroke-dasharray='2,4'  d='M79.70,18.01 L79.70,284.00 L774.82,284.00 M774.82,18.01 M79.70,18.01  '/></g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+	<g id="gnuplot_plot_1" ><title>client_header_buffer_size=1k</title>
+<g fill="none" color="white" stroke="rgb(128, 128, 128)" stroke-width="2.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="round" stroke-linejoin="round">
+	<g transform="translate(707.09,251.90)" stroke="none" fill="rgb(255,254,248)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >client_header_buffer_size=1k</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(250,  82,  82)'  d='M715.48,248.00 L758.04,248.00 M79.70,238.77 L88.96,232.12 L98.22,226.83 L107.48,221.81 L116.72,216.14 L125.88,211.19
+		L135.31,206.02 L144.71,200.80 L154.14,194.83 L163.45,189.88 L172.47,185.12 L181.74,180.21 L191.06,173.83 L200.58,168.73
+		L209.81,164.04 L219.14,158.90 L228.22,153.54 L237.44,148.02 L246.52,143.03 L255.77,138.27 L265.07,132.91 L274.31,127.81
+		L283.48,122.59 L292.74,117.64 L301.82,112.66 L311.07,107.55 L320.02,102.53 L329.02,97.58 L338.23,92.03 L347.18,87.04
+		L356.45,82.13 L365.59,77.59 L374.91,72.11 L384.09,69.81 L393.26,69.81 L402.48,69.17 L411.74,66.26 L420.80,62.18
+		L429.98,61.80 L439.30,60.67 L448.72,59.00 L457.96,57.30 L467.39,57.30 L476.80,57.08 L486.08,57.08 L495.31,57.08
+		L504.59,57.08 L513.88,57.04 L523.23,57.04 L532.47,57.04 L541.50,57.04 L550.49,56.96 L559.75,56.85 L568.77,56.74
+		L578.01,56.62 L587.30,55.98 L596.53,55.72 L605.84,55.00 L615.28,54.02 L624.38,52.69 L633.70,51.11 L643.10,49.48
+		L652.36,47.56 L661.49,45.52 L670.79,42.61 L679.98,39.74 L689.24,37.09 L698.44,34.52 L707.63,32.71 L716.87,29.99
+		L726.20,26.78 L735.40,24.32 L744.57,24.02 L753.99,23.45 L763.18,24.92 L772.35,24.21  '/></g>
+	</g>
+	<g id="gnuplot_plot_2" ><title>large_client_header_buffers=4 16k</title>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="round" stroke-linejoin="round">
+	<g transform="translate(707.09,269.90)" stroke="none" fill="rgb(255,254,248)" font-family="Gill Sans" font-size="18.00"  text-anchor="end">
+		<text><tspan font-family="Gill Sans" >large_client_header_buffers=4 16k</tspan></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="round" stroke-linejoin="round">
+	<path stroke='rgb(130, 201,  30)'  d='M715.48,266.00 L758.04,266.00 M79.70,243.87 L88.99,237.75 L98.19,235.26 L107.38,232.77 L116.51,228.80 L125.63,226.46
+		L134.87,224.04 L144.27,221.58 L153.69,217.58 L163.04,215.24 L172.38,212.59 L181.64,210.13 L190.92,206.89 L200.21,204.43
+		L209.41,201.75 L218.72,199.10 L228.03,195.97 L237.14,193.47 L246.50,190.60 L255.74,187.99 L265.06,184.90 L274.39,182.67
+		L283.59,180.21 L292.77,176.66 L302.03,174.24 L311.26,171.71 L320.65,168.95 L330.01,165.93 L339.36,163.40 L348.56,160.98
+		L357.99,158.33 L367.52,155.65 L376.91,153.05 L386.23,151.80 L395.52,151.65 L404.67,150.59 L414.06,149.04 L423.27,147.08
+		L432.55,147.04 L441.92,146.55 L451.37,146.06 L460.71,145.00 L470.07,145.00 L479.37,144.81 L488.53,144.81 L497.66,144.81
+		L506.92,144.81 L516.23,144.81 L525.41,144.81 L534.61,144.81 L543.71,144.73 L552.99,144.73 L562.19,144.73 L571.18,144.73
+		L580.50,144.43 L589.86,144.39 L598.96,144.17 L608.17,143.98 L617.46,143.34 L626.73,143.18 L635.92,142.84 L645.21,142.69
+		L654.41,141.67 L663.66,140.27 L673.09,138.84 L682.48,137.44 L691.57,135.85 L700.83,134.61 L710.04,133.06 L719.25,131.58
+		L728.59,129.81 L737.71,129.28 L746.99,130.19 L756.27,131.24 L765.52,132.57 L774.82,132.38  '/></g>
+	</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="black" stroke="black" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="round" stroke-linejoin="round">
+</g>
+</g>
+</svg>
+
