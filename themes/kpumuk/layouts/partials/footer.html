@@ -21,7 +21,7 @@
       {{- $mastodonParts := split $handle `@` }}
       {{- $mastodonHandle := index $mastodonParts 1 }}
       {{- $mastodonSite := index $mastodonParts 2 }}
-      {{- $url = printf `https://%s/web/@%s` $mastodonSite $mastodonHandle }}
+      {{- $url = printf `https://%s/@%s` $mastodonSite $mastodonHandle }}
       {{- end }}
       <a class="online-{{ . }}" href="{{ $url }}" target="_blank"{{ with $rel }} rel="{{ . }}"{{ end }}></a>
       {{- end }}<!---->
