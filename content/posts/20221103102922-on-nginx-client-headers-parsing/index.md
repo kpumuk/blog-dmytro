@@ -327,7 +327,7 @@ Memory usage looks normal. After all, this is what nginx was built for: relative
 | `10k`  | 49075.34 |    10ms |
 | `128k` | 48930.94 |    10ms |
 
-This gets very interesting. With default settings, nginx starts consuming 5x more memory than it normally would, while with tuned settings the memory usage did not change from the previous test. If we take a look at the benchmark, there are 3 headers: small, large (taking the whole large buffer), and small. Following the nginx algorithm, we know it will allocate 3 buffers for this case: default (1k), large (8k, to put header `B` in there), and another large (for header 'C').
+This gets very interesting. With default settings, nginx starts consuming 5x more memory than it normally would, while with tuned settings the memory usage did not change from the previous test. If we take a look at the benchmark, there are 3 headers: small, large (taking the whole large buffer), and small. Following the nginx algorithm, we know it will allocate 3 buffers for this case: default (1k), large (8k, to put header `B` in there), and another large (for header `C`).
 
 {{< figure lightsrc="nginx-memory-large-headers-light.svg" darksrc="nginx-memory-large-headers-dark.svg" caption="Memory usage for requests with large headers" >}}
 
@@ -352,4 +352,4 @@ large_client_header_buffers 8 16k;
 
 If you deploy behind Amazon API Gateway, then the limit should not be set higher than 10 kB, as it is a [hard limit](https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html) that cannot be changed (see "Total combined size of request line and header values" — 10,240 bytes).
 
-Thank you for sticking with me through the whole endeavor. Configuration files and scripts used in this benchmark you can find in the [blog repository](https://github.com/kpumuk/blog-dmytro/tree/main/supplementary/nginx-headers-benchmark/). You can find me in some social networks (see below), please let me know what you think about all this.
+Thank you for sticking with me through the whole endeavor. Configuration files and scripts used in this benchmark are in the [blog repository](https://github.com/kpumuk/blog-dmytro/tree/main/supplementary/nginx-headers-benchmark/). You can find me in some social networks (see the links below), and please let me know what you do think about all this.
