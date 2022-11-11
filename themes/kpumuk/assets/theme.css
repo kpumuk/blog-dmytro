@@ -441,6 +441,13 @@ code {
   padding: 0 0.2725em;
   background: var(--code-bg-color);
   color: var(--code-text-color);
+  word-break: break-all;
+  white-space: break-spaces;
+  border-radius: 3px;
+}
+
+a > code {
+  color: inherit;
 }
 
 .highlight {
