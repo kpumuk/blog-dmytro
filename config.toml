@@ -18,6 +18,7 @@ posts = "/blog/:slug"
 twitter = "kpumuk"
 github = "kpumuk"
 mastodon = "@kpumuk@ruby.social"
+mail = "hi@dmytro.sh"
 rss = true
 # home page profile
 name = "Dmytro Shteflyuk"

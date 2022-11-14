@@ -22,6 +22,9 @@
       {{- $mastodonHandle := index $mastodonParts 1 }}
       {{- $mastodonSite := index $mastodonParts 2 }}
       {{- $url = printf `https://%s/@%s` $mastodonSite $mastodonHandle }}
+      {{- else if eq . `mail` }}
+      {{- $url = printf `mailto:%s` $handle }}
+      {{- $rel = "" }}
       {{- end }}
       <a class="online-{{ . }}" href="{{ $url }}" target="_blank"{{ with $rel }} rel="{{ . }}"{{ end }}></a>
       {{- end }}<!---->

@@ -384,6 +384,10 @@ nav.online .online-rss {
   --url: url('/rss.svg');
 }
 
+nav.online .online-mail {
+  --url: url('/mail.svg');
+}
+
 article table {
   width: 100%;
   table-layout: auto;
