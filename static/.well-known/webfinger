@@ -1,0 +1,23 @@
+{
+  "subject": "acct:kpumuk@ruby.social",
+  "aliases": [
+    "https://ruby.social/@kpumuk",
+    "https://ruby.social/users/kpumuk"
+  ],
+  "links": [
+    {
+      "rel": "http://webfinger.net/rel/profile-page",
+      "type": "text/html",
+      "href": "https://ruby.social/@kpumuk"
+    },
+    {
+      "rel": "self",
+      "type": "application/activity+json",
+      "href": "https://ruby.social/users/kpumuk"
+    },
+    {
+      "rel": "http://ostatus.org/schema/1.0/subscribe",
+      "template": "https://ruby.social/authorize_interaction?uri={uri}"
+    }
+  ]
+}
