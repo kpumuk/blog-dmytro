@@ -3,6 +3,7 @@ title = "On nginx client headers parsing"
 subtitle = "a journey into debugging and benchmarking nginx"
 slug = "on-nginx-client-headers-parsing"
 date = 2022-11-03T10:29:21-04:00
+images = ["/blog/on-nginx-client-headers-parsing/memory-layout-light.svg"]
 +++
 
 Nginx is a powerful HTTP server, often used as a reverse proxy for all kinds of service configurations. But even though it is well documented and understood, there are still questions that have contradictory or incomplete answers. One of them is HTTP client header parsing configuration settings, which you normally tweak when nginx returns error 400 and you see "client sent too long header line" in the log.
