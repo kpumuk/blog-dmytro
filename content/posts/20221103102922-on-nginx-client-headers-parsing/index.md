@@ -357,6 +357,6 @@ If you deploy behind Amazon API Gateway, then the limit should not be set higher
 
 Thank you for sticking with me through the whole endeavor. Configuration files and scripts used in this benchmark are in the [blog repository](https://github.com/kpumuk/blog-dmytro/tree/main/supplementary/nginx-headers-benchmark/), process statistics captured using [psbench](https://github.com/kpumuk/psbench), and the graphs are produced using [gnuplot script](https://github.com/kpumuk/blog-dmytro/blob/main/supplementary/nginx-headers-benchmark/benchmark.gp). You can find me in some social networks (see the links below), and please let me know what you do think about all this.
 
-## Changes
+## Change history
 
 - **2022-11-18** — Added CPU usage graphs, and regenerated metrics data using custom tool [psbench](https://github.com/kpumuk/psbench).
