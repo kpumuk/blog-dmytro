@@ -355,7 +355,7 @@ large_client_header_buffers 8 16k;
 
 If you deploy behind Amazon API Gateway, then the limit should not be set higher than 10 kB, as it is a [hard limit](https://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html) that cannot be changed (see "Total combined size of request line and header values" — 10,240 bytes).
 
-Thank you for sticking with me through the whole endeavor. Configuration files and scripts used in this benchmark are in the [blog repository](https://github.com/kpumuk/blog-dmytro/tree/main/supplementary/nginx-headers-benchmark/), process statics captured using [psbench](https://github.com/kpumuk/psbench), and the graphs are produced using [gnuplot script](https://github.com/kpumuk/blog-dmytro/blob/main/supplementary/nginx-headers-benchmark/benchmark.gp). You can find me in some social networks (see the links below), and please let me know what you do think about all this.
+Thank you for sticking with me through the whole endeavor. Configuration files and scripts used in this benchmark are in the [blog repository](https://github.com/kpumuk/blog-dmytro/tree/main/supplementary/nginx-headers-benchmark/), process statistics captured using [psbench](https://github.com/kpumuk/psbench), and the graphs are produced using [gnuplot script](https://github.com/kpumuk/blog-dmytro/blob/main/supplementary/nginx-headers-benchmark/benchmark.gp). You can find me in some social networks (see the links below), and please let me know what you do think about all this.
 
 ## Changes
 
