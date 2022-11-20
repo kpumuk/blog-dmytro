@@ -45,3 +45,18 @@ asdf latest hugo
    ```markdown
    {{< figure lightsrc="/images/diagram-light.svg" darksrc="/images/diagram-dark.svg" >}}
    ```
+
+## Twitter Cards
+
+Most of the graphics in the blog should be created in SVG, as it allows scaling for different devices. Unfortunately, Twitter only supports JPG, PNG, WEBP and GIF formats. In order to convert svg to another format, use a CLI conversion tool from Inkscape:
+
+```bash
+brew install inkscape --cask
+inkscape --export-type=png --export-background="#fffef8" --export-dpi=150 memory-layout-light.svg
+```
+
+The image should be referenced in the front matter using **full** path:
+
+```toml
+images = ["/blog/on-nginx-client-headers-parsing/memory-layout-light.png"]
+```
