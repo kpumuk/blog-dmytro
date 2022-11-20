@@ -55,8 +55,9 @@ brew install inkscape --cask
 inkscape --export-type=png --export-background="#fffef8" --export-dpi=150 memory-layout-light.svg
 ```
 
-The image should be referenced in the front matter using **full** path:
+The image should be referenced in the front matter using **full** path, or be named with `feature`, `cover`, or `thumbnail` in the image page resources:
 
 ```toml
 images = ["/blog/on-nginx-client-headers-parsing/memory-layout-light.png"]
+# or name the file "memory-layout-light-cover.png"
 ```
