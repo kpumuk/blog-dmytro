@@ -20,7 +20,7 @@
   {{ $theme_css := resources.Get "theme.css" }}
   {{ $syntax_css := resources.Get "syntax.css" }}
   <!---->
-  {{ $css := slice $normalize_css $theme_css $syntax_css | resources.Concat "main.css" | minify }}
+  {{ $css := slice $normalize_css $theme_css $syntax_css | resources.Concat "main.css" | fingerprint }}
   <link rel="preload stylesheet" as="style" href="{{ $css.Permalink }}" />
 
   {{ if and .IsPage (not site.Params.disableHLJS) }}
