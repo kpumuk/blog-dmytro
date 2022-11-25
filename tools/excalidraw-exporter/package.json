@@ -1,0 +1,15 @@
+{
+  "name": "excalidraw-exporter",
+  "description": "CLI to export Excalidraw drawings to SVG",
+  "version": "1.0.0",
+  "bin": "./main.js",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "@excalidraw/excalidraw": "^0.13.0",
+    "canvas": "^2.10.2",
+    "jsdom": "^20.0.2",
+    "jsdom-global": "^3.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
