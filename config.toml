@@ -4,7 +4,7 @@ title = "Dmytro on Things"
 theme = "kpumuk"
 rssLimit = 20
 copyright = 'This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.'
-ignoreFiles = ['\.excalidraw$', '/supplementary/']
+ignoreFiles = ['\.excalidraw$', '/supplementary/', '/static/.*\.md']
 
 [author]
 name = "Dmytro Shteflyuk"
