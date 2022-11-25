@@ -6,7 +6,7 @@ publish = "public"
 for = "/fonts/*"
 
 [headers.values]
-Cache-Control = "public, s-maxage=604800"
+Cache-Control = "public, s-maxage=31536000, immutable"
 
 [context.production.environment]
 HUGO_ENV = "production"
