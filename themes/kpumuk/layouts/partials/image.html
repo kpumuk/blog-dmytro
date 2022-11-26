@@ -1,13 +1,16 @@
 {{- $size := partial "image-size" .Image }}
 {{- if eq .Image.MediaType.SubType "svg"}}
-    <object data="{{ .Image.RelPermalink }}" type="image/svg+xml" class="{{ .Class }}" loading="lazy"
-        {{- with .Width }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
-        {{- with .Height }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
-    >
-        {{- if or .Alt .Caption -}}
-            {{ with .Alt }}{{ . }}{{ else }}{{ .Caption | markdownify | plainify }}{{ end }}
-        {{- end -}}
-    </object>
+    {{ $style := print "padding-top: calc(min(" $size.Height "px, " (mul $size.HRatio 100) "%));"}}
+    <div class="container-svg {{ .Class }}" style="{{ $style | safeCSS }}">
+        <object data="{{ .Image.RelPermalink }}" type="image/svg+xml" loading="lazy"
+            {{- with .Width }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}
+            {{- with .Height }} height="{{ . }}"{{ else }} height="{{ $size.Height }}"{{ end -}}
+        >
+            {{- if or .Alt .Caption -}}
+                {{ with .Alt }}{{ . }}{{ else }}{{ .Caption | markdownify | plainify }}{{ end }}
+            {{- end -}}
+        </object>
+    </div>
 {{- else }}
     <img src="{{ .Image.RelPermalink }}" class="{{ .Class }}" loading="lazy"
         {{- if or .Alt .Caption -}}
