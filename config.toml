@@ -42,3 +42,8 @@ twitter = "kpumuk"
 [markup.highlight]
 noClasses = false
 tabWidth = 4
+
+[frontmatter]
+# https://gohugo.io/getting-started/configuration/#configure-dates
+date = ["publishDate", "date", "lastmod"]
+publishDate = ["publishDate", "date", "lastmod"]
