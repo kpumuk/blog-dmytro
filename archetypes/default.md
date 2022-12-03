@@ -12,4 +12,6 @@ Short summary.
 
 <!--more-->
 
+{{<toc>}}
+
 Post contents.
