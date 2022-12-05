@@ -32,6 +32,7 @@ html {
   --footer-bg-color: #223344;
   --footer-text-color: #b4aaaa;
   --footer-link-color: #fea2a9;
+  --nav-item-bg-color: rgb(239.58, 238.59, 232.63);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -48,6 +49,7 @@ html {
     --footer-bg-color: rgb(8.97, 11.53, 18.68);
     --footer-text-color: #b4aaaa;
     --footer-link-color: #fea2a9;
+    --nav-item-bg-color: rgb(42.42, 45.62, 54.1);
   }
 }
 
@@ -362,6 +364,52 @@ figure > figcaption {
 
 footer .copyright {
   margin: 0 auto;
+}
+
+nav.article-chain {
+  background-color: var(--nav-item-bg-color);
+  border-radius: 0.5rem;
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1.5rem;
+}
+
+nav.article-chain a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-right: 0.75rem;
+}
+
+nav.article-chain a.next .marker {
+  margin-right: 0.3rem;
+}
+
+nav.article-chain a.prev .marker {
+  margin-left: 0.3rem;
+}
+
+@media (min-width: 470px) {
+  nav.article-chain {
+    margin-top: 6rem;
+    padding: 1.5rem;
+  }
+
+  nav.article-chain {
+    flex-direction: row;
+  }
+
+  nav.article-chain a {
+    /* width: calc(50% - 1.5rem); */
+  }
+
+  nav.article-chain a.prev {
+    justify-content: flex-end;
+    text-align: right;
+  }
 }
 
 nav.online {

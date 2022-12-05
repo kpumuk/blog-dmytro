@@ -32,18 +32,12 @@
   <!-- Post Nav -->
   {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}<!---->
   {{ if and (gt (len $pages) 1) (in $pages . ) }}
-  <nav class="mt-24 flex rounded-lg bg-black/[3%] text-lg dark:bg-white/[8%]">
+  <nav class="article-chain">
     {{ with $pages.Next . }}
-    <a class="flex w-1/2 items-center p-6 pr-3 no-underline" href="{{ .Permalink }}"
-      ><span class="mr-1.5">←</span><span>{{ .Name }}</span></a
-    >
+    <a class="next" href="{{ .Permalink }}"><span class="marker">←</span><span>{{ .Name }}</span></a>
     {{ end }}<!---->
     {{ with $pages.Prev . }}
-    <a
-      class="ml-auto flex w-1/2 items-center justify-end p-6 pl-3 no-underline"
-      href="{{ .Permalink }}"
-      ><span>{{ .Name }}</span><span class="ml-1.5">→</span></a
-    >
+    <a class="prev" href="{{ .Permalink }}"><span>{{ .Name }}</span><span class="marker">→</span></a>
     {{ end }}
   </nav>
   {{ end }}
