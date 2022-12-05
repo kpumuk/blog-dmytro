@@ -1,6 +1,6 @@
 +++
 title = "On breaking changes in transitive dependencies"
-subtitle = "a story of a change, that broke Sidekiq's reliability"
+subtitle = "a story of a change, that broke Sidekiq's reliability promises"
 slug = "on-breaking-changes-in-transitive-dependencies"
 date = 2022-12-05T10:06:32-05:00
 publishDate = 2022-12-05T10:06:32-05:00
@@ -38,13 +38,13 @@ The recovery mechanism depends on the heartbeat monitor to ignore live processes
 2. If the "dead" process is found, its private queues will be picked up for analysis (one private queue per real queue, which looks like `queue:sq|identity|queue_name`)
 3. The jobs from the private queues get moved back to the original queues, and then private queues get deleted, along with the record in the `super_processes` set.
 
-### Heartbeat detection using broken APIs
+### Sidekiq heartbeat implementation
 
 Now, imagine a scenario where the detection of which process is alive, is broken.
 
 The heartbeat process uses a very simple, yet powerful technique. Every 5 seconds a thread would run, dumping stats for every worker in the process, and then the heartbeat metrics are saved into the "identity" key (which usually includes hostname, process PID, and some random string), with an expiration of 60 seconds. No heartbeat — Redis will delete the key after 60 seconds, and the process is officially dead.
 
-To check if the process is alive, we just need to check if the key exists. Easy. Except it is not if you face a backward-incompatible change in the client library. What if "check if the key exists" would suddenly start always returning `true` (or, as we Rubyists often call it, `0`)?
+To check if the process is alive, we just need to check if the key exists. Easy. Except it is not if you face a backward-incompatible change in the client library. What if "check if the key exists" would suddenly start always returning `true` (or, as we Rubyists often call it, `0`)? Well, the `super_fetch` job recover flow will go haywire for one.
 
 ### Backwards incompatible Redis client update
 
