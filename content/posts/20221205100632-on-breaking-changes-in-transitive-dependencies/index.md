@@ -28,14 +28,14 @@ Something is not working as expected. Let's dig into how `super_fetch` works, an
 
 ### How `super_fetch` recovers jobs
 
-The inner workings of `super_fetch` are covered by the blog post ["Increase reliability using `super_fetch` of Sidekiq Pro"](https://www.bigbinary.com/blog/increase-reliability-of-background-job-processing-using-super_fetch-of-sidekiq-pro#sidekiq-pro-s-super-fetch). It short, is a pretty clever usage of `RPOPLPUSH` Redis command: when Sidekiq picks the next job from a queue, it also atomically pushes it into a private queue, created specifically for the current worker. If the process abnormally crashes it is now possible to recover the jobs that otherwise would have been lost, and put them back into the original queue for processing.
+The inner workings of `super_fetch` are covered by the blog post ["Increase reliability using `super_fetch` of Sidekiq Pro"](https://www.bigbinary.com/blog/increase-reliability-of-background-job-processing-using-super_fetch-of-sidekiq-pro#sidekiq-pro-s-super-fetch). In short, it is a pretty clever usage of `RPOPLPUSH` Redis command: when Sidekiq picks a job from the queue, it also atomically pushes it into a private queue, created specifically for the current worker. If the process abnormally crashes, it is now possible to recover the jobs that otherwise would have been lost, and put them back into the original queue for processing.
 
 The recovery mechanism depends on the heartbeat monitor to ignore live processes. This is what the flow looks like:
 
 {{< figure lightsrc="sidekiq-pro-super_fetch-light.svg" darksrc="sidekiq-pro-super_fetch-dark.svg" caption="Sidekiq's `super_fetch` recovery flow" >}}
 
 1. On startup, the newly spawned worker goes through the list of all registered in Redis super processes (`super_processes` set), skipping the ones that are still alive (based on heartbeat monitoring)
-2. If the "dead" process is found, the items from its private queues will be picked up and re-queued (one private queue per real queue, looks like `queue:sq|identity|queue_name`)
+2. If the "dead" process is found, its private queues will be picked up for analysis (one private queue per real queue, which looks like `queue:sq|identity|queue_name`)
 3. The jobs from the private queues get moved back to the original queues, and then private queues get deleted, along with the record in the `super_processes` set.
 
 ### Heartbeat detection using broken APIs
@@ -44,15 +44,15 @@ Now, imagine a scenario where the detection of which process is alive, is broken
 
 The heartbeat process uses a very simple, yet powerful technique. Every 5 seconds a thread would run, dumping stats for every worker in the process, and then the heartbeat metrics are saved into the "identity" key (which usually includes hostname, process PID, and some random string), with an expiration of 60 seconds. No heartbeat — Redis will delete the key after 60 seconds, and the process is officially dead.
 
-To check if the process is alive, we just need to check if the key exists. Easy. Except it is not if you face a backward-incompatible change in the client library. What if "check if the key exists" would suddenly start always returning `true` (or, as we Rubyists often call this, `0`)?
+To check if the process is alive, we just need to check if the key exists. Easy. Except it is not if you face a backward-incompatible change in the client library. What if "check if the key exists" would suddenly start always returning `true` (or, as we Rubyists often call it, `0`)?
 
 ### Backwards incompatible Redis client update
 
-Historically, [redis-rb](https://github.com/redis/redis-rb) was converting the result of [EXISTS](https://redis.io/commands/exists/) operation to a boolean (where `0` means `false`, and anything else is `true`). Then in 4.2.0, a [change was made](https://github.com/redis/redis-rb/commit/325752764995b02f17c3e5240ea489f641911d7d) that would allow to pass multiple keys, and switch the return value, but only if explicitly enabled `Redis.exists_returns_integer`. It turns out, this change produced a lot of noise in the logs, so it was [toned down](https://github.com/redis/redis-rb/pull/920) in 4.2.1 when the configuration option was explicitly set to `false`.
+Historically, [redis-rb](https://github.com/redis/redis-rb) was converting the result of the [EXISTS](https://redis.io/commands/exists/) operation to a boolean (where `0` means `false`, and anything else is `true`). Then in 4.2.0, a [change was made](https://github.com/redis/redis-rb/commit/325752764995b02f17c3e5240ea489f641911d7d) that would allow passing multiple keys, and switched the return value to an integer, but only if `Redis.exists_returns_integer` is explicitly enabled. It turns out, this change produced a lot of noise in the logs, so it was [toned down](https://github.com/redis/redis-rb/pull/920) in 4.2.1 when the configuration option is explicitly set to `false`.
 
-Sidekiq picked up the change [right away](https://github.com/mperham/sidekiq/issues/4591), releasing version 6.1.0 that switched from using `conn.exists` to `conn.exists?`. Corresponding changes were also released for `sidekiq-pro` gem
+Sidekiq picked up the change [right away](https://github.com/mperham/sidekiq/issues/4591) in record time frame, releasing version 6.1.0, switching from using `conn.exists` to `conn.exists?`. Corresponding changes were also released for `sidekiq-pro` gem.
 
-At some point, [Akihide Ito noticed](https://github.com/redis/redis-rb/pull/1030) the promise to switch the default behavior in 4.3.0, while the Redis client version was already on 4.4. A [change was made](https://github.com/redis/redis-rb/pull/1030/commits/915d118cb9a2f7d507f0afa0fe8dedf3d28a9f63) for the upcoming 4.5.0 that switched default behavior, and consequently [made it more explicit](https://github.com/redis/redis-rb/commit/cf7e6287d49d3b1e89a647703946bff5439c36c4) to reduce logging noise.
+At some point a year later, [Akihide Ito noticed](https://github.com/redis/redis-rb/pull/1030) the promise to switch the default behavior in 4.3.0, while the Redis client version was already on 4.4.0. A [change was made](https://github.com/redis/redis-rb/pull/1030/commits/915d118cb9a2f7d507f0afa0fe8dedf3d28a9f63) for the upcoming 4.5.0 that switched default behavior, and consequently [made it more explicit](https://github.com/redis/redis-rb/commit/cf7e6287d49d3b1e89a647703946bff5439c36c4) to reduce logging noise.
 
 What happened to us? Well, we upgraded the base `sidekiq` gem, `redis` client, but not `sidekiq-pro`. And after that, `super_fetch` stopped working.
 
@@ -64,17 +64,17 @@ next if conn.exists(x)
 next if conn.exists?(x)
 ```
 
-The question mark is the culprit.
+Since `redis-rb` now always returns an integer, `sidekiq-pro` is thinking that all processes are alive, and skips job recovery. This is the most devastating impact of a question mark in history (yes, I exaggerate a little bit for the dramatic effect).
 
 ### Fixing the issue and recovering the jobs
 
-Luckily for us, the private queues stayed intact in Redis, and all we needed to do was to update `sidekiq-pro` to a more recent version.
+Luckily for us, the private queues stayed intact in Redis, and all we need to do was to update `sidekiq-pro` to a more recent version and restart the process. We will need to go through the jobs that got stuck in the private queues to ensure they are still relevant and will not cause issues if ran today (normally, background jobs should be idempotent, but, for example, notifying a customer about an event that has already finished would be undesired.)
 
 ## Dependency management responsibilities
 
-Who is responsible for managing dependencies in our applications? The obvious answer is — we are. It gets into a grey area with transitive dependencies thought. If a direct dependency (for example, Sidekiq), brings a 3rd-party transitive dependency, I would guess it properly would specify the version requirements to make sure the versions are compatible.
+Who is responsible for managing dependencies in our applications? The obvious answer is — we are. It gets into a grey area with transitive dependencies thought. If a direct dependency (for example, Sidekiq), brings a 3rd-party transitive dependency, I would guess Sidekiq should properly specify the version requirements to make sure the versions are compatible.
 
-On the other hand, gem dependencies cannot be too strict with version locks. If a gem locks version requirements to a specific version, or a list of versions below a specific minor or patch version,— that would require maintainers to quickly react to any version updates, re-test, and release new versions of their software with updated dependencies. This sounds horrible: an unnecessary burden on maintainers, frequent updates for no reason other than dependency version bumps, etc.
+On the other hand, gems cannot be too strict with version locks. If a gem locks version requirements to a specific version, or a list of versions below a specific minor or patch version,— that would require maintainers to quickly react to any version updates, re-test, and release new versions of their software with updated dependencies. This sounds horrible: an unnecessary burden on maintainers, frequent updates for no reason other than dependency version bumps, etc.
 
 This is why standards like [Semantic Versioning](https://semver.org/) are so important. Imagine a world where software could be tested against a version of the dependency, and then allow all version updates as long as they are minor (a new functionality added in a backward-compatible manner) or patch versions (backward-compatible bug fixes). Well, luckily for us, Ruby programmers, the future is here. Almost all popular gems follow semantic versioning and allow _almost_ frictionless updates.
 
