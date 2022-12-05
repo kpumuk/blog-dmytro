@@ -382,6 +382,11 @@ nav.article-chain a {
   display: flex;
   align-items: center;
   padding-right: 0.75rem;
+  text-decoration: none;
+}
+
+nav.article-chain a:hover span:not(.marker) {
+  text-decoration: underline;
 }
 
 nav.article-chain a.next .marker {
