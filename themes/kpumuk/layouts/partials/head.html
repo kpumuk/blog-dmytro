@@ -4,7 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
   <!-- Title -->
-  <title>{{ if not .IsHome }}{{ .Title }} - {{ end }}{{ site.Title }}</title>
+  <title>{{ if not .IsHome }}{{ .Title }}{{ with .Params.Subtitle }}: {{ . }}{{ end }} - {{ end }}{{ site.Title }}</title>
 
   <!-- Meta -->
   {{ if eq .Kind "page" }}

@@ -3,7 +3,7 @@
 <article>
   <header>
     <h1>{{ .Title }}</h1>
-    {{ if .Params.Subtitle }}<p class="subheading">{{ .Params.Subtitle }}</p>{{ end }}
+    {{ with .Params.Subtitle }}<p class="subheading">{{ . }}</p>{{ end }}
 
     {{ if ne .Type "page" }}
     <p>
