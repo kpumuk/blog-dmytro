@@ -418,7 +418,7 @@ nav.article-chain a.prev .marker {
 
 @media (min-width: 470px) {
   nav.article-chain {
-    margin-top: 6rem;
+    margin-top: 4rem;
     padding: 1.5rem;
   }
 
@@ -551,4 +551,17 @@ blockquote code {
 
 footer:not(.tags) a {
   color: var(--footer-link-color);
+}
+
+footer.tags {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+footer.tags a {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--nav-item-bg-color);
+  border-radius: 1rem;
 }

@@ -4,7 +4,7 @@ subtitle = "a story of a change, that broke Sidekiq's reliability promises"
 slug = "on-breaking-changes-in-transitive-dependencies"
 date = 2022-12-05T10:06:32-05:00
 publishDate = 2022-12-05T10:06:32-05:00
-tags = []
+tags = ["ruby", "sidekiq"]
 +++
 
 Now and then you receive a report about something not working as expected. This time it was scarier than usual: a job, killed by Docker after consuming too much memory with an OOM error, was disappearing from the queue without a trace. In production, we deploy `sidekiq-pro` for its reliability guarantees, specifically `super_fetch` strategy for pulling work from the queue, and normally should re-queue the job after a restart.

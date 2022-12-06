@@ -3,7 +3,7 @@ title = "On (re)starting a blog"
 subtitle = "this time it is going to be better (every programmer when rewriting their code from scratch)"
 slug = "on-starting-a-blog"
 date = 2022-11-26T22:08:33-05:00
-tags = []
+tags = ["blog", "learning"]
 +++
 
 The idea to restart the blog was lingering in my brain for quite some time. It was never the right time: sometimes I was not sure I have anything to say, often it was dissatisfaction with the available tools and a fear of the amount of effort this endeavor will require. But sometimes you have to accept that things will not be perfect from the start, and some tinkering will be always required.

@@ -2,7 +2,9 @@
 
 <!-- Tag Title -->
 {{ if and .Title (eq .Type "tags") }}
-<h1>{{ .Title }}</h1>
+<header>
+  <h1>Articles tagged with "{{ .Title }}"</h1>
+</header>
 {{ end }}
 
 <!-- $pages -->
