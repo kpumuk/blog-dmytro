@@ -28,12 +28,15 @@
   <article>
     <header>
       <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-      <time>{{ .Date | time.Format ":date_long" }}</time>
+      {{ with .Params.Subtitle }}<p class="subheading">{{ . }}</p>{{ end }}
     </header>
     <blockquote>
       {{ .Summary }}
-      {{ if .Truncated }}<a href="{{ .Permalink }}">Read full post »</a>{{ end }}
     </blockquote>
+    <footer>
+      {{ if .Truncated }}<a href="{{ .Permalink }}">Read full post »</a>{{ end }}
+      <time>{{ .Date | time.Format ":date_long" }}</time>
+    </footer>
   </article>
   {{ end }}
 </section>

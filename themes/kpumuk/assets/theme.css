@@ -272,9 +272,20 @@ article pre {
   margin-bottom: 0;
 }
 
-.article-list article header time {
-  font-size: 0.8em;
+.article-list article header h2,
+.article-list article header p.subheading {
+  display: inline;
+}
+
+.article-list article header p.subheading::before {
+  content: ':';
+  padding-right: 1rem;
+}
+
+.article-list article footer time {
+  font-size: 1em;
   font-style: italic;
+  display: block;
 }
 
 .article-list article blockquote {
@@ -285,12 +296,20 @@ article pre {
 }
 
 @media (min-width: 470px) {
-  .article-list article blockquote {
+  .article-list article blockquote,
+  .article-list article footer {
     padding-left: 1.5em;
   }
 }
 
-footer:not(.tags) {
+.article-list article footer {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  justify-content: space-between;
+}
+
+body > footer {
   background-color: var(--footer-bg-color);
   color: var(--footer-text-color);
   opacity: 100%;
