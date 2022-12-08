@@ -38,12 +38,12 @@ html {
 @media (prefers-color-scheme: dark) {
   :root {
     --accent-color: #fea2a9;
-    --text-color: #fffef8;
+    --text-color: #c4c4c4;
     --bg-color: #1f222a;
     --bullet-color: #666666;
     --counter-bg-color: #a3a3a3;
     --code-bg-color: #293c50;
-    --code-text-color: #fffef8;
+    --code-text-color: c4c4c4;
     --pre-line-wrap-color: #595543;
     --table-border-color: #525252;
     --footer-bg-color: rgb(8.97, 11.53, 18.68);

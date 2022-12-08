@@ -93,8 +93,8 @@
    ========================================================================== */
 
 @media (prefers-color-scheme: dark) {
-/* Background */ .bg { color: #f8f8f2; background-color: #272822; }
-/* PreWrapper */ .chroma { color: #f8f8f2; background-color: #272822; }
+/* Background */ .bg { color: #c4c4c4; background-color: #272822; }
+/* PreWrapper */ .chroma { color: #c4c4c4; background-color: #272822; }
 /* Other */ .chroma .x {  }
 /* Error */ .chroma .err { color: #960050; background-color: #1e0010 }
 /* CodeLine */ .chroma .cl {  }
