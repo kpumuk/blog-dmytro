@@ -279,6 +279,7 @@ article pre {
 
 .article-list article header p.subheading::before {
   content: ':';
+  word-break: break-all;
   padding-right: 1rem;
 }
 
