@@ -7,6 +7,13 @@
 </header>
 {{ end }}
 
+<!-- Blog Title -->
+{{ if eq .Type "posts" }}
+<header>
+  <h1>All writings by {{ site.Author.name }}</h1>
+</header>
+{{ end }}
+
 <!-- $pages -->
 {{ $pages := union .RegularPages .Sections -}}<!---->
 {{ if .IsHome -}}<!---->
