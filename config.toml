@@ -32,7 +32,7 @@ bio = "Welcome to my corner of the Internet, where I write about things that int
 # misc
 disableHLJS = true
 repo = "https://github.com/kpumuk/blog-dmytro"
-font_css_url = "https://use.typekit.net/fzy3wla.css"
+fontCSSURL = "https://use.typekit.net/fzy3wla.css"
 
 [social]
 twitter = "kpumuk"

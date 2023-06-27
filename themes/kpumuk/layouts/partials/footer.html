@@ -10,7 +10,7 @@
     {{- with $.Scratch.Get "social_list" }}
     <nav class="online">
       {{- range . }}<!---->
-      {{- $handle := site.Params.Get . }}
+      {{- $handle := site.Param . }}
       {{- $url := printf `https://%s.com/%s` . $handle }}
       {{- $rel := "me" }}
 
@@ -35,7 +35,7 @@
       &copy; {{ now.Year }}
       <a class="link" href="{{ `` | absURL }}">{{ site.Title }}</a>
       <span>&middot;</span>
-      <a href="{{ site.Params.Get "repo" }}" target="_blank">Source</a>
+      <a href="{{ site.Param "repo" }}" target="_blank">Source</a>
     </div>
   </div>
 </footer>
