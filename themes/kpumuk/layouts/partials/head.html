@@ -49,7 +49,7 @@
   <link rel="apple-touch-icon" href="{{ `apple-touch-icon.png` | absURL }}" />
 
   <!-- Webfonts -->
-  {{ $font_css_url := site.Params.Get "font_css_url" -}}
+  {{ $font_css_url := site.Param "fontCSSURL" -}}
   <!---->
   {{ if $font_css_url -}}
   <link rel="preload stylesheet" as="style" href="{{ $font_css_url }}" crossOrigin="anonymous">
