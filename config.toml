@@ -34,7 +34,7 @@ disableHLJS = true
 repo = "https://github.com/kpumuk/blog-dmytro"
 fontCSSURL = "https://use.typekit.net/fzy3wla.css"
 
-[social]
+[params.social]
 twitter = "kpumuk"
 
 [markup]
