@@ -1,14 +1,13 @@
 +++
-title = "On reproducible builds"
+title = "On reproducible Docker images"
 subtitle = "multi-arch Docker images without immutable tags"
-slug = "on-reproducible-builds"
+slug = "on-reproducible-docker-images"
 date = 2024-02-27T20:08:45-05:00
 publishDate = 2024-02-27T20:08:45-05:00
 tags = ["docker", "ruby"]
-draft = true
 +++
 
-Most of the base images in the Docker registry do not offer immutable tags. This means that if you're building your Docker image based on, for example, an official Ruby image `ruby:3.3.0-slim`, it might change overnight and the machines that have already downloaded this tag will never receive an updated image.
+Most of the base images in the Docker registry do not offer immutable tags. This means that if you're building your Docker image based on, for example, an official Ruby image `ruby:3.3.0-slim`, it might change overnight, and the machines that have already downloaded this tag will never receive an updated image.
 
 <!--more-->
 
@@ -25,21 +24,21 @@ Here are some threads where people are asking what is going on:
 - [docker: Docker Hub Immutable Image Tags Natively](https://github.com/docker/roadmap/issues/85)
 - [docker-library: Prefer os tags in How to use this Image sections](https://github.com/docker-library/docs/issues/1572)
 
-Docker official library FAQ answers the question about [what happens after the source code changes](https://github.com/docker-library/faq?tab=readme-ov-file#an-images-source-changed-in-git-now-what). In essence, the new image will be built pushed to the repository, and re-tagged with the same tag.
+Docker official library FAQ answers the question about [what happens after the source code changes](https://github.com/docker-library/faq?tab=readme-ov-file#an-images-source-changed-in-git-now-what). In essence, the new image will be built, pushed to the repository, and re-tagged with the same tag.
 
 ## Reproducible builds
 
-This opens an interesting case, when somebody already have pulled the previous image. If the base image was updated to address a security vulnerability or a critical bug,— their will never know it until they explicitly pull the tag again.
+This opens an interesting case when somebody already has pulled the previous image. If the base image was updated to address a security vulnerability or a critical bug, they will never know it until they explicitly pull the tag again.
 
 Another problem might arise after the build succeeds on a local machine, but mysteriously fails on CI because the base image packages have different versions.
 
 To solve this, the official guidance is to use manifest digest:
 
 ```dockerfile
-FROM registry.docker.com/library/ruby:3.0.0-slim@sha256:82176f375ab446b6fec6036e0b162a65df4fb50d9fd45ddc378d9adbaf407d3a AS base
+FROM registry.docker.com/library/ruby:3.3.0-slim@sha256:82176f375ab446b6fec6036e0b162a65df4fb50d9fd45ddc378d9adbaf407d3a AS base
 ```
 
-In this case, Docker will ignore the tag (we can still use it as a hint for the reader, just need to make sure we change the version when the manifest checksum is updated). We can obtain the checksum by [browsing Docker Hub](https://hub.docker.com/layers/library/ruby/3.3.0-slim/images/sha256-82176f375ab446b6fec6036e0b162a65df4fb50d9fd45ddc378d9adbaf407d3a?context=explore) or by running [manifest-tool](https://github.com/estesp/manifest-tool):
+In this case, Docker will ignore the tag (we can still use it as a hint for the reader, just need to make sure we change the version when the manifest digest is updated). We can obtain the digest by [browsing Docker Hub](https://hub.docker.com/layers/library/ruby/3.3.0-slim/images/sha256-82176f375ab446b6fec6036e0b162a65df4fb50d9fd45ddc378d9adbaf407d3a?context=explore) or by running [manifest-tool](https://github.com/estesp/manifest-tool):
 
 ```bash
 manifest-tool inspect registry.docker.com/library/ruby:3.3.0-slim
@@ -70,9 +69,17 @@ Digest: sha256:b449d4b89ee333695ee200da962aa260f3870a5a61290761a7cfb6b10791603c
 ...
 ```
 
+In addition, there is an experimental feature in Docker that allows to manipulate manifests with `docker` CLI:
+
+```bash
+docker manifest inspect registry.docker.com/library/ruby:3.3.0-slim
+```
+
+At the moment, it will print in JSON the same information available on the website.
+
 ## Multi-arch images
 
-Now, we have a solution for reproducible builds for a single-platform builds. But how this will work for multi-platform builds? For example, when using Kamal builds a multi-platform image with buildx:
+Now, we have a solution for reproducible builds for single-platform builds. But how will this work for multi-platform builds? For example, when Kamal builds a multi-platform image with `buildx`:
 
 ```bash
 docker buildx build --platform linux/arm64,linux/amd64 .
@@ -92,9 +99,9 @@ We can actually use the digest of the manifest itself to reference a multi-platf
 FROM registry.docker.com/library/ruby@sha256:b449d4b89ee333695ee200da962aa260f3870a5a61290761a7cfb6b10791603c AS base
 ```
 
-## Bonus: Deploying Ruby 3.3.0 on ARM64
+## Bonus: deploying Ruby 3.3.0 on ARM64
 
-If you are tried to use Ruby 3.3.0 to deploy a Ruby on Rails application, you might have been greeted with a crash:
+If you have tried to use Ruby 3.3.0 to deploy a Ruby on Rails application, you might have been greeted with a crash:
 
 ```text
  => ERROR [linux/arm64 build 6/6] RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile                                                                     0.3s
@@ -120,7 +127,7 @@ Dockerfile:38
 ERROR: failed to solve: process "/bin/sh -c SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile" did not complete successfully: exit code: 139
 ```
 
-There is a [bug](https://bugs.ruby-lang.org/issues/20085) in Ruby 3.3.0, which has been addressed, but a new Ruby patch version is not released yet. If you already pulled the image from the registry — you can either update it and keep using the tag, or specify the manifest of the recent image rebuild:
+There is a [bug](https://bugs.ruby-lang.org/issues/20085) in Ruby 3.3.0, which has been addressed, but a new Ruby patch version has not been released yet. If you have already pulled the image from the registry, you can either update the image and continue using the tag, or you can specify the manifest digest of the recently rebuilt image:
 
 ```ruby
 # Make sure Ruby version matches .ruby-version
