@@ -2,7 +2,28 @@
 
 const fs = require("fs/promises");
 const path = require("path");
-require("jsdom-global")();
+
+const { CanvasRenderingContext2D } = require("canvas");
+const { polyfillPath2D } = require("path2d-polyfill");
+
+const JSDOM = require("jsdom").JSDOM;
+const dom = new JSDOM("", { url: "https://dmytro.sh" });
+
+dom.window.CanvasRenderingContext2D = CanvasRenderingContext2D;
+polyfillPath2D(dom.window);
+
+const keys = [
+  "document",
+  "navigator",
+  "window",
+  "SVGElement",
+  "Element",
+  "Path2D",
+];
+Object.assign(
+  globalThis,
+  Object.fromEntries(keys.map((key) => [key, dom.window[key]]))
+);
 
 global.devicePixelRatio = 1;
 
@@ -18,12 +39,15 @@ const readExcalidrawFile = async (path) => {
   }
 };
 
-async function replaceFont(svg, fontFamily) {
+async function replaceFont(svg, fontFamily, fileName) {
   if (svg.match(new RegExp(`font-family="${fontFamily}\\b`))) {
     console.log(`* Embedding ${fontFamily}`);
     const fontUri = `url('/fonts/${fontFamily}.woff2') format('woff2')`;
     svg = svg.replaceAll(
-      new RegExp(`url\\("https://.+?/${fontFamily}\\.woff2"\\)`, "g"),
+      new RegExp(
+        `url\\("https://.+?/${fileName || fontFamily}\\.woff2"\\)`,
+        "g"
+      ),
       () => fontUri
     );
   } else {
@@ -42,6 +66,7 @@ async function replaceFont(svg, fontFamily) {
 async function replaceFonts(svg) {
   svg = await replaceFont(svg, "Virgil");
   svg = await replaceFont(svg, "Cascadia");
+  svg = await replaceFont(svg, "Assistant", "Assistant-Regular");
   return svg;
 }
 
