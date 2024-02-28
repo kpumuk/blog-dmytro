@@ -174,7 +174,7 @@ pre {
  */
 pre .line {
   white-space: pre-wrap;
-  word-wrap: break-word;
+  word-break: break-all;
   padding-left: 1.5em;
   text-indent: -1.5em;
   overflow: hidden;

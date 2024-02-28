@@ -15,3 +15,11 @@ This is a fun, new monospaced font that includes programming ligatures and is de
 Homepage: https://github.com/microsoft/cascadia-code
 
 Downloaded from https://github.com/excalidraw/excalidraw/tree/master/public
+
+## Assistant
+
+Assistant is a Hebrew type family designed by Ben Nathan to complement the Source Sans Pro Latin fonts by Paul Hunt at Adobe Type.
+
+Homepage: https://github.com/hafontia-zz/Assistant
+
+Downloaded from https://github.com/excalidraw/excalidraw/tree/master/public
