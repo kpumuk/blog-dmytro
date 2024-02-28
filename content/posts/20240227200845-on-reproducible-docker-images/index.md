@@ -79,7 +79,7 @@ At the moment, it will print in JSON the same information available on the websi
 
 ## Multi-arch images
 
-Now, we have a solution for reproducible builds for single-platform builds. But how will this work for multi-platform builds? For example, when Kamal builds a multi-platform image with `buildx`:
+Now, we have a solution for reproducible builds for single-platform builds. But how will this work for multi-platform builds? For example, [Kamal](https://kamal-deploy.org/) builds a multi-platform image with `buildx`:
 
 ```bash
 docker buildx build --platform linux/arm64,linux/amd64 .
