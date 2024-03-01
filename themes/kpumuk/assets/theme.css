@@ -441,6 +441,7 @@ nav.online {
   display: flex;
   gap: 0.75rem;
   justify-content: center;
+  margin: 0.25rem 0 0.75rem 0;
 }
 
 nav.online a {
