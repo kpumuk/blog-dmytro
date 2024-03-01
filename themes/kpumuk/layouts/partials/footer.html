@@ -29,7 +29,7 @@
       {{- $rel = "" }}
       {{- end }}
       <a class="online-{{ . }}" href="{{ $url }}" target="_blank"{{ with $rel }} rel="{{ . }}"{{ end }}>
-        {{ partial "svg.html" . }}
+        {{ partial "svg.html" ( cond (eq . "twitter") "x" . ) }}
       </a>
       {{- end }}<!---->
     </nav>

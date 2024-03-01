@@ -467,6 +467,21 @@ nav.online a:hover svg {
     drop-shadow(4px 8px 12px lch(4.86% 13.66 254.64 / 30%));
 }
 
+@media (prefers-color-scheme: dark) {
+  nav.online a svg {
+    transition-property: margin-top;
+    transition-duration: 0.1s;
+    filter: drop-shadow(1px 2px 3px lch(20% 0 0 / 10%)) drop-shadow(2px 4px 6px lch(20% 0 0 / 10%))
+      drop-shadow(4px 8px 12px lch(20% 0 0 / 10%));
+  }
+
+  nav.online a:hover svg {
+    margin-top: -0.2rem;
+    filter: drop-shadow(1px 2px 3px lch(20% 0 0 / 30%)) drop-shadow(2px 4px 6px lch(20% 0 0 / 30%))
+      drop-shadow(4px 8px 12px lch(20% 0 0 / 30%));
+  }
+}
+
 article table {
   width: 100%;
   table-layout: auto;
