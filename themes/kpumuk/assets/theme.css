@@ -467,6 +467,10 @@ nav.online .online-mastodon {
   --url: url('/mastodon.svg');
 }
 
+nav.online .online-linkedin {
+  --url: url('/linkedin.svg');
+}
+
 nav.online .online-rss {
   --url: url('/rss.svg');
 }

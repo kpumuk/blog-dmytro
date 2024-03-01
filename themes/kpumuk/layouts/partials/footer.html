@@ -17,6 +17,8 @@
       {{- if eq . `rss` }}
       {{- $url = `index.xml` | absURL }}
       {{- $rel = "" }}
+      {{- else if eq . `linkedin` }}
+      {{- $url = printf `https://%s.com/in/%s` . $handle }}
       {{- else if eq . `mastodon` }}
       {{- $mastodonParts := split $handle `@` }}
       {{- $mastodonHandle := index $mastodonParts 1 }}
