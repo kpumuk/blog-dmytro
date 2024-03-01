@@ -12,7 +12,7 @@ Typekit is used for loading external fonts. Font families currently used on the 
 
 - "Calluna" serif family with discretionary ligatures enabled is used in headers.
 
-## Syntax highlighting
+## Syntax Highlighting
 
 The blog fully supports user preferred dark/light theme. To support syntax highlighting, two color schemes are generated:
 
@@ -22,7 +22,7 @@ The blog fully supports user preferred dark/light theme. To support syntax highl
 
 This command will update `themes/kpumuk/assets/syntax.css` with syntax colors for both light and dark themes.
 
-## Hugo version
+## Hugo Version
 
 Hugo version is installed via asdf in `.tool-versions`, and enforced on Netlify via `netlify.toml`. **Update in both places!**
 
@@ -35,7 +35,7 @@ asdf plugin add hugo https://github.com/nklmilojevic/asdf-hugo.git
 asdf latest hugo
 ```
 
-## Excalidraw diagrams
+## Excalidraw Diagrams
 
 1. Save `*.excalidraw` diagram anywhere in the page bundle.
 2. Run `scripts/render-excalidraw.sh` to generate light and dark diagrams
@@ -60,3 +60,9 @@ The image should be referenced in the front matter using **full** path, or be na
 images = ["/blog/on-nginx-client-headers-parsing/memory-layout-light.png"]
 # or name the file "memory-layout-light-cover.png"
 ```
+
+## Icons
+
+Icons on the website (including social brands in the footer) are from [Material Design Icons](https://pictogrammers.com/library/mdi/) (also available on [Iconify](https://icon-sets.iconify.design/mdi/)).
+
+Brand icons in the set are [no longer maintained](https://github.com/Pictogrammers/pictogrammers.com/issues/100). The missing "X" icon was taken from [Simple Icons](simpleicons.org).
