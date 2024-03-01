@@ -455,34 +455,6 @@ nav.online a {
   mask-image: var(--url);
 }
 
-nav.online .online-twitter {
-  --url: url('./images/x.svg');
-}
-
-nav.online .online-github {
-  --url: url('./images/github.svg');
-}
-
-nav.online .online-instagram {
-  --url: url('./images/instagram.svg');
-}
-
-nav.online .online-mastodon {
-  --url: url('./images/mastodon.svg');
-}
-
-nav.online .online-linkedin {
-  --url: url('./images/linkedin.svg');
-}
-
-nav.online .online-rss {
-  --url: url('./images/rss.svg');
-}
-
-nav.online .online-mail {
-  --url: url('./images/mail.svg');
-}
-
 article table {
   width: 100%;
   table-layout: auto;

@@ -28,13 +28,14 @@
       {{- $url = printf `mailto:%s` $handle }}
       {{- $rel = "" }}
       {{- end }}
-      <a class="online-{{ . }}" href="{{ $url }}" target="_blank"{{ with $rel }} rel="{{ . }}"{{ end }}></a>
+      <a class="online-{{ . }}" href="{{ $url }}" target="_blank"{{ with $rel }} rel="{{ . }}"{{ end }} style="--url: url({{ printf `/images/%s.svg` . | safeCSS }})"></a>
       {{- end }}<!---->
     </nav>
     {{- end }}<!---->
 
     <div class="copyright">
       &copy; {{ now.Year }}
+      <span>&middot;</span>
       <a class="link" href="{{ `` | absURL }}">{{ site.Title }}</a>
       <span>&middot;</span>
       <a href="{{ site.Param "repo" }}" target="_blank">Source</a>
