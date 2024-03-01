@@ -439,14 +439,15 @@ nav.article-chain a.prev .marker {
 
 nav.online {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: center;
   margin: 0.25rem 0 0.75rem 0;
 }
 
 nav.online a {
-  width: 2rem;
-  height: 2rem;
+  width: 3rem;
+  height: 3rem;
   display: inline-block;
   /* Painting the image by masking to switch color in Dark mode */
   background-color: var(--footer-text-color);
@@ -455,7 +456,7 @@ nav.online a {
 }
 
 nav.online .online-twitter {
-  --url: url('./images/twitter.svg');
+  --url: url('./images/x.svg');
 }
 
 nav.online .online-github {
