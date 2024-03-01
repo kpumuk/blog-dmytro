@@ -28,7 +28,9 @@
       {{- $url = printf `mailto:%s` $handle }}
       {{- $rel = "" }}
       {{- end }}
-      <a class="online-{{ . }}" href="{{ $url }}" target="_blank"{{ with $rel }} rel="{{ . }}"{{ end }} style="--url: url({{ printf `/images/%s.svg` . | safeCSS }})"></a>
+      <a class="online-{{ . }}" href="{{ $url }}" target="_blank"{{ with $rel }} rel="{{ . }}"{{ end }}>
+        {{ partial "svg.html" . }}
+      </a>
       {{- end }}<!---->
     </nav>
     {{- end }}<!---->
