@@ -41,7 +41,7 @@
   <!---->
 
   {{ range $.Scratch.Get "social_list" }}
-  <link rel="preload" as="image" href="{{ printf `%s.svg` . | absURL }}" crossOrigin="anonymous" />
+  <link rel="preload" as="image" href="{{ printf `/images/%s.svg` . | absURL }}" crossOrigin="anonymous" />
   {{ end }}
 
   <!-- Favicon -->

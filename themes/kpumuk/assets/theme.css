@@ -454,31 +454,31 @@ nav.online a {
 }
 
 nav.online .online-twitter {
-  --url: url('/twitter.svg');
+  --url: url('./images/twitter.svg');
 }
 
 nav.online .online-github {
-  --url: url('/github.svg');
+  --url: url('./images/github.svg');
 }
 
 nav.online .online-instagram {
-  --url: url('/instagram.svg');
+  --url: url('./images/instagram.svg');
 }
 
 nav.online .online-mastodon {
-  --url: url('/mastodon.svg');
+  --url: url('./images/mastodon.svg');
 }
 
 nav.online .online-linkedin {
-  --url: url('/linkedin.svg');
+  --url: url('./images/linkedin.svg');
 }
 
 nav.online .online-rss {
-  --url: url('/rss.svg');
+  --url: url('./images/rss.svg');
 }
 
 nav.online .online-mail {
-  --url: url('/mail.svg');
+  --url: url('./images/mail.svg');
 }
 
 article table {
