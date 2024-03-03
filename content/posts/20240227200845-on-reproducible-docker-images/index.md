@@ -35,10 +35,10 @@ Another problem might arise after the build succeeds on a local machine, but mys
 To solve this, the official guidance is to use manifest digest:
 
 ```dockerfile
-FROM registry.docker.com/library/ruby:3.3.0-slim@sha256:82176f375ab446b6fec6036e0b162a65df4fb50d9fd45ddc378d9adbaf407d3a AS base
+FROM registry.docker.com/library/ruby:3.3.0-slim@sha256:cdf1bae55aaa4ed3c9927ed6f67f6f35e9de4d6b6a2d29249411937b49426034 AS base
 ```
 
-In this case, Docker will ignore the tag (we can still use it as a hint for the reader, just need to make sure we change the version when the manifest digest is updated). We can obtain the digest by [browsing Docker Hub](https://hub.docker.com/layers/library/ruby/3.3.0-slim/images/sha256-82176f375ab446b6fec6036e0b162a65df4fb50d9fd45ddc378d9adbaf407d3a?context=explore) or by running [manifest-tool](https://github.com/estesp/manifest-tool):
+In this case, Docker will ignore the tag (we can still use it as a hint for the reader, just need to make sure we change the version when the manifest digest is updated). We can obtain the digest by [browsing Docker Hub](https://hub.docker.com/layers/library/ruby/3.3.0-slim/images/sha256-cdf1bae55aaa4ed3c9927ed6f67f6f35e9de4d6b6a2d29249411937b49426034?context=explore) or by running [manifest-tool](https://github.com/estesp/manifest-tool):
 
 ```bash
 manifest-tool inspect registry.docker.com/library/ruby:3.3.0-slim
@@ -48,10 +48,10 @@ The output will look like:
 
 ```text
 Name:   registry.docker.com/library/ruby:3.3.0-slim (Type: application/vnd.oci.image.index.v1+json)
-Digest: sha256:b449d4b89ee333695ee200da962aa260f3870a5a61290761a7cfb6b10791603c
+Digest: sha256:abcb7c3943a085f511397b65ba7ca32ad56af759a53af932c5e354e1a8f84bcb
  * Contains 16 manifest references (8 images, 8 attestations):
 [1]     Type: application/vnd.oci.image.manifest.v1+json
-[1]   Digest: sha256:82176f375ab446b6fec6036e0b162a65df4fb50d9fd45ddc378d9adbaf407d3a
+[1]   Digest: sha256:cdf1bae55aaa4ed3c9927ed6f67f6f35e9de4d6b6a2d29249411937b49426034
 [1]   Length: 1934
 [1] Platform:
 [1]    -      OS: linux
@@ -59,7 +59,7 @@ Digest: sha256:b449d4b89ee333695ee200da962aa260f3870a5a61290761a7cfb6b10791603c
 [1] # Layers: 5
 ...
 [7]     Type: application/vnd.oci.image.manifest.v1+json
-[7]   Digest: sha256:cae64ce744fa83113cbc5938e3817d8c2bf6c1ef6486ac8beca681a621380091
+[7]   Digest: sha256:ee13c5706b5e817521cbd1572d7aa35696d4b9c721340ba36827e58dcc22852e
 [7]   Length: 1936
 [7] Platform:
 [7]    -      OS: linux
@@ -89,14 +89,14 @@ The answer lies in the first lines of the `manifest-tool` output:
 
 ```text
 Name:   registry.docker.com/library/ruby:3.3.0-slim (Type: application/vnd.oci.image.index.v1+json)
-Digest: sha256:b449d4b89ee333695ee200da962aa260f3870a5a61290761a7cfb6b10791603c
+Digest: sha256:abcb7c3943a085f511397b65ba7ca32ad56af759a53af932c5e354e1a8f84bcb
  * Contains 16 manifest references (8 images, 8 attestations):
 ```
 
 We can actually use the digest of the manifest itself to reference a multi-platform base image:
 
 ```ruby
-FROM registry.docker.com/library/ruby@sha256:b449d4b89ee333695ee200da962aa260f3870a5a61290761a7cfb6b10791603c AS base
+FROM registry.docker.com/library/ruby@sha256:abcb7c3943a085f511397b65ba7ca32ad56af759a53af932c5e354e1a8f84bcb AS base
 ```
 
 ## Bonus: deploying Ruby 3.3.0 on ARM64
@@ -127,10 +127,14 @@ Dockerfile:38
 ERROR: failed to solve: process "/bin/sh -c SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile" did not complete successfully: exit code: 139
 ```
 
-There is a [bug](https://bugs.ruby-lang.org/issues/20085) in Ruby 3.3.0, which has been addressed, but a new Ruby patch version has not been released yet. If you have already pulled the image from the registry, you can either update the image and continue using the tag, or you can specify the manifest digest of the recently rebuilt image:
+There is a [bug](https://bugs.ruby-lang.org/issues/20085) in Ruby 3.3.0, which has been addressed, but a new Ruby patch version has not been released yet. If you have already pulled the image from the registry, you can either update the image and continue using the tag, or you can specify the manifest digest of the [recently rebuilt image](https://github.com/docker-library/official-images/pull/16337):
 
 ```ruby
 # Make sure Ruby version matches .ruby-version
 #   manifest-tool inspect registry.docker.com/library/ruby:3.3.0-slim
-FROM registry.docker.com/library/ruby@sha256:b449d4b89ee333695ee200da962aa260f3870a5a61290761a7cfb6b10791603c AS base
+FROM registry.docker.com/library/ruby@sha256:abcb7c3943a085f511397b65ba7ca32ad56af759a53af932c5e354e1a8f84bcb AS base
 ```
+
+## Change history
+
+- **2024-03-03** — Updated manifest checksums to pick a [second Ruby 3.3.0 patch](https://github.com/docker-library/official-images/pull/16337).
