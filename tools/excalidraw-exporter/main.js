@@ -3,14 +3,15 @@
 const fs = require("fs/promises");
 const path = require("path");
 
-const { CanvasRenderingContext2D } = require("canvas");
-const { polyfillPath2D } = require("path2d-polyfill");
+const { createCanvas, CanvasRenderingContext2D } = require("canvas");
+const { applyPath2DToCanvasRenderingContext, Path2D } = require("path2d");
 
 const JSDOM = require("jsdom").JSDOM;
 const dom = new JSDOM("", { url: "https://dmytro.sh" });
 
+applyPath2DToCanvasRenderingContext(CanvasRenderingContext2D);
 dom.window.CanvasRenderingContext2D = CanvasRenderingContext2D;
-polyfillPath2D(dom.window);
+dom.window.Path2D = Path2D;
 
 const keys = [
   "document",
