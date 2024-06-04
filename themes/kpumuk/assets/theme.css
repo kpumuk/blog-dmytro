@@ -405,8 +405,13 @@ nav.article-chain a {
   text-decoration: none;
 }
 
-nav.article-chain a:hover span:not(.marker) {
+nav.article-chain a span:not(.marker) {
   text-decoration: underline;
+}
+
+nav.article-chain a:hover span:not(.marker) {
+  text-decoration: underline double;
+  -webkit-text-decoration: underline double;
 }
 
 nav.article-chain a.next .marker {
@@ -524,11 +529,12 @@ ul > li::marker {
 }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   color: var(--accent-color);
 }
 a:hover {
-  text-decoration: underline;
+  text-decoration: underline double;
+  -webkit-text-decoration: underline double;
 }
 
 code {
