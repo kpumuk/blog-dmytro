@@ -436,7 +436,7 @@ __metadata:
     "@excalidraw/excalidraw": "npm:^0.17.6"
     canvas: "npm:^2.11.2"
     jsdom: "npm:^24.1.0"
-    path2d: "npm:^0.2.0"
+    path2d: "npm:^0.2.1"
     react: "npm:^18.3.1"
     react-dom: "npm:^18.3.1"
   bin:
@@ -1144,10 +1144,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path2d@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "path2d@npm:0.2.0"
-  checksum: 10/576e4fba080d9177ad5d9d7c17926eed13ca5d606f9a213ea248ce4db953c3eafb6fcc03152eba806ce62d18961f56cce67e863804bd10d8b57b20f74467ddac
+"path2d@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "path2d@npm:0.2.1"
+  checksum: 10/16dd250206069417cc9e7377a8f077a4f385e1b0ed121d9766420f592b5519fad8c160b85205561fcdd8cf5169c779deb9e2e883ed61b21980c9201c6df198f8
   languageName: node
   linkType: hard
 
