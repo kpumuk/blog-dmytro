@@ -12,7 +12,7 @@
       {{ end }}<!---->
       {{ if or .Params.Author site.Author.name }}
       <span>&middot;</span>
-      <span>{{ .Params.Author | default site.Author.name }}</span>
+      <a href="{{ `` | absURL }}">{{ .Params.Author | default site.Author.name }}</a>
       {{ end }}
     </p>
     {{ end }}
