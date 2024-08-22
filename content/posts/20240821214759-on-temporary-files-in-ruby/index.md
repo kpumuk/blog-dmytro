@@ -7,7 +7,7 @@ publishDate = 2024-08-21T21:48:01-04:00
 tags = ["ruby"]
 +++
 
-We often use temporary files when building software: to store a report before sending it to a customer or uploading it to AWS S3; to download a CSV to parse into a database; or to store a picture of your beloved cat before sending it to the generative AI to put on a silly hat on the unsuspecting feline. Today, I will talk about common mistakes with temporary files.
+We often use temporary files when building software: to store a report before sending it to a customer or uploading it to AWS S3; to download a CSV to parse into a database; or to store a picture of your beloved cat before sending it to the generative AI to put a silly hat on the unsuspecting feline. Today, I will talk about common mistakes with temporary files.
 
 <!--more-->
 
@@ -31,16 +31,16 @@ path = generate_report(users)
 s3_bucket.object("report.csv").upload_file(path)
 ```
 
-The code passes QA, your tests are green, and you ship it to production. Then the next day you get an error in Sentry:
+The code passes QA, your tests are green, and you ship it to production. Then, the next day, you get an error in Sentry:
 
 ```plain
 No such file or directory @ rb_sysopen - /var/folders/cg/nr4lp6j52tz30sthgzsvfmq00000gn/T/report20240821-56738-8pw09p (Errno::ENOENT)
 ```
 
-Why is this happening? Because of the lifecycle of the `Tempfile` object. When a normal file is created, written to, and then closed, the file persists on the disk. A temporary file, on the other hand, not only gets a unique name in a special place on the disk but is also automatically deleted; the only question is when does this happen:
+Why is this happening? Because of the lifecycle of the `Tempfile` object. When a normal file is created, written to, and then closed, the file persists on the disk. A temporary file, on the other hand, not only gets a unique name in a special place on the disk but is also automatically deleted (in most cases); the only question is when this happens:
 
-- When the `Tempfile` object is garbage collected.
-- When a block form of `Tempfile.create` is used to open the tempfile.
+- When the `Tempfile` object that defines finalizers is garbage collected.
+- When a block form of `Tempfile.create` is used to open the temporary file.
 - An explicit `unlink` removes the file from the file system. Interestingly, on POSIX systems, the file can be `unlinked` before closing, which would remove the filesystem entry but keep the file handle open; this will ensure that the only processes accessing the file are those that already have it open.
 
 Let's consider the first scenario:
@@ -101,6 +101,39 @@ With this change, we ensure that:
 
 - The temporary file is deleted as soon as we no longer need it.
 - The file stays on the file system for as long as we need it.
+
+### Garbage collection on `Tempfile` objects
+
+I mentioned that the file is almost always deleted, and that it depends on whether the finalizers were defined. How do you know if that is the case? Actually, it is pretty simple:
+
+- `Tempfile.new` and `Tempfile.open` define finalizers that will automatically close and unlink the file.
+- `Tempfile.open` with a block will close the file at the end of the block.
+- `Tempfile.create` **does not define** finalizers but will close and unlink the file in block form.
+
+This means that `Tempfile.create` is the most efficient API for temporary files (no delegation, no finalizers), and the only API to keep the temporary file on disk.
+
+If you really, really need a temporary file that will not be garbage collected, and which you will manually track and delete when it is no longer needed, use `Tempfile.create` without a block. Returning to our first example,
+
+```ruby
+def generate_report(rows)
+  tempfile = Tempfile.create("report")
+  CSV.new(tempfile, write_headers: true, headers: ["ID", "Name"]) do |csv|
+    rows.each { csv << [_1.id, _1.name] }
+  end
+  tempfile.path
+ensure
+  # manually close to free the file descriptor
+  tempfile.close
+end
+
+# Somewhere else
+path = generate_report(users)
+s3_bucket.object("report.csv").upload_file(path)
+# It is important to not forget to delete the file
+File.unlink(path)
+```
+
+With this change, we have to manually close the temporary file to free the file descriptor and manually unlink the file to free the disk space. That's a lot of responsibility to carry, and I would recommend avoiding it at all costs. Even if you can do it, it does not mean you should.
 
 ## Using `Tempfile.open` instead of `Tempfile.create`
 
@@ -173,7 +206,7 @@ Tempfile.create do |f|
 end
 ```
 
-The downside is that if you are fighting a production incident, for example, `Errno::ENOSPC: No space left on device`, you need all the help you can get. Looking at a directory that only has files like `20240822-60283-j8dbll` is not helpful at all!
+The downside is that if you are dealing with a production incident, for example, `Errno::ENOSPC: No space left on device`, you need all the help you can get. Looking at a directory that only has files like `20240822-60283-j8dbll` is not helpful at all!
 
 Let's fix it:
 
