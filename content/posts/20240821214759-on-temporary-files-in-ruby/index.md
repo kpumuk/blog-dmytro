@@ -1,6 +1,6 @@
 +++
 title = "On temporary files in Ruby"
-subtitle = "tips on how not to shoot yourself in the foot"
+subtitle = "how not to shoot yourself in the foot"
 slug = "on-temporary-files-in-ruby"
 date = 2024-08-21T21:48:01-04:00
 publishDate = 2024-08-21T21:48:01-04:00
