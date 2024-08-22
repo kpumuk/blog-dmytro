@@ -106,13 +106,13 @@ With this change, we ensure that:
 
 I mentioned that the file is almost always deleted, and that it depends on whether the finalizers were defined. How do you know if that is the case? Actually, it is pretty simple:
 
-- `Tempfile.new` and `Tempfile.open` define finalizers that will automatically close and unlink the file.
-- `Tempfile.open` with a block will close the file at the end of the block.
-- `Tempfile.create` **does not define** finalizers but will close and unlink the file in block form.
+- `Tempfile.new` and `Tempfile.open` (which uses `Tempfile.new` under the hood) define finalizers that will automatically close and unlink the file.
+- `Tempfile.open` with a block will also close the file at the end of the block.
+- `Tempfile.create` **does not define** finalizers but will close and unlink the file when used in block form.
 
-This means that `Tempfile.create` is the most efficient API for temporary files (no delegation, no finalizers), and the only API to keep the temporary file on disk.
+This means that `Tempfile.create` is the most efficient API from the performance point of view for temporary files (no delegation, no finalizers), but also the only API to keep the temporary file on disk even after the `Tempfile` object is collected by GC.
 
-If you really, really need a temporary file that will not be garbage collected, and which you will manually track and delete when it is no longer needed, use `Tempfile.create` without a block. Returning to our first example,
+If you really, really need a temporary file that will not be garbage collected, and which you will manually track and delete when it is no longer needed (pinky promise!), use `Tempfile.create` without a block. Returning to our first example,
 
 ```ruby
 def generate_report(rows)
