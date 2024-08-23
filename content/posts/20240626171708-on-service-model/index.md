@@ -3,9 +3,8 @@ title = "On \"Service Model\""
 subtitle = "helping librarians to preserve data"
 slug = "on-service-model"
 date = 2024-06-26T17:17:08-04:00
-publishDate = 2024-08-23T17:17:08-04:00
+publishDate = 2024-08-23T17:17:28-04:00
 tags = ["humor", "ruby", "books"]
-draft = true
 +++
 
 While reading "Service Model", a book by Adrian Tchaikovsky, I was first fascinated by the librarians, and then later awestruck by the elegance and silliness of their idea. This post will explore a potential implementation of the algorithm, a little bit of exploration of Async in Ruby, and some spoilers for that part of the book. You have been warned.
