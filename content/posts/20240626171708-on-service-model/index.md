@@ -1,6 +1,6 @@
 +++
 title = "On \"Service Model\""
-subtitle = "helping librarians to preserve data"
+subtitle = "helping librarians to preserve all human knowledge"
 slug = "on-service-model"
 date = 2024-06-26T17:17:08-04:00
 publishDate = 2024-08-23T17:17:28-04:00
