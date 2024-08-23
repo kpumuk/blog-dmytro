@@ -245,12 +245,27 @@ article {
 }
 
 article blockquote {
+  position: relative;
   margin: 0;
   padding-left: 0.75rem;
   font-style: italic;
   border-left: 0.25rem solid var(--accent-color);
   margin-left: -1rem;
   margin-bottom: 1.6em;
+}
+
+:not(.article-list) > article blockquote {
+    &::before {
+        content: '”';
+        color: var(--accent-color);
+        font-size: 72pt;
+        position: absolute;
+        top: -1.3rem;
+        font-family: calluna, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+        font-feature-settings: 'dlig';
+    }
+
+    padding-top: 2rem;
 }
 
 article pre {
