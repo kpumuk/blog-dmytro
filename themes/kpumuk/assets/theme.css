@@ -260,7 +260,7 @@ article blockquote {
         color: var(--accent-color);
         font-size: 72pt;
         position: absolute;
-        top: -1.3rem;
+        top: -0.3em;
         font-family: calluna, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
         font-feature-settings: 'dlig';
     }
