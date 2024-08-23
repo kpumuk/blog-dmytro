@@ -6,7 +6,7 @@
 <!-- social_list -->
 {{- $social_params := slice "github" "mastodon" "twitter" "instagram" "linkedin" "mail" "rss" }}<!---->
 {{- range $social_params }}<!---->
-{{- if isset site.Params . }}<!---->
+{{- if isset site.Params.social . }}<!---->
 {{- $.Scratch.Add "social_list" (slice .) }}<!---->
 {{- end -}}<!---->
 {{- end -}}<!---->

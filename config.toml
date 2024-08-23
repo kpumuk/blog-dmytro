@@ -12,31 +12,26 @@ ignoreFiles = [
   '/scripts/'
 ]
 
-[author]
-name = "Dmytro Shteflyuk"
-email = "hi@dmytro.sh"
-
 [permalinks]
 posts = "/blog/:slug"
 
 [params]
-# social icons
-twitter = "kpumuk"
-github = "kpumuk"
-mastodon = "@kpumuk@ruby.social"
-linkedin = "kpumuk"
-mail = "hi@dmytro.sh"
-rss = true
-# home page profile
-name = "Dmytro Shteflyuk"
-bio = "Welcome to my corner of the Internet, where I write about things that interest me."
-# misc
 disableHLJS = true
 repo = "https://github.com/kpumuk/blog-dmytro"
 fontCSSURL = "https://use.typekit.net/fzy3wla.css"
 
 [params.social]
 twitter = "kpumuk"
+github = "kpumuk"
+mastodon = "@kpumuk@ruby.social"
+linkedin = "kpumuk"
+mail = "hi@dmytro.sh"
+rss = true
+
+[params.author]
+name = "Dmytro Shteflyuk"
+email = "hi@dmytro.sh"
+bio = "Welcome to my corner of the Internet, where I write about things that interest me."
 
 [markup]
 

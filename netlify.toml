@@ -16,19 +16,19 @@ Cache-Control = "public, s-maxage=31536000, immutable"
 
 [context.production.environment]
 HUGO_ENV = "production"
-HUGO_VERSION = "0.123.4"
+HUGO_VERSION = "0.133.0"
 
 [context.deploy-preview]
 command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
 
 [context.deploy-preview.environment]
-HUGO_VERSION = "0.123.4"
+HUGO_VERSION = "0.133.0"
 
 [context.branch-deploy]
 command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy.environment]
-HUGO_VERSION = "0.123.4"
+HUGO_VERSION = "0.133.0"
 
 [[redirects]]
 from = "/main.min.css"
