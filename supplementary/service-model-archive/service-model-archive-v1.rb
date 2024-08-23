@@ -16,7 +16,7 @@ def download_gem(name)
     {},
     user_agent: "ServiceModel-Librarian/1.0"
   )
-  raise "Failed to download a gem for archival: #{spec.full_name}" unless response.success?
+  raise "Failed to download: #{spec.full_name}" unless response.success?
 
   response.body
 end

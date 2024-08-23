@@ -51,17 +51,21 @@ end
 Reading our own source is as simple as `File.read(__FILE__)`. We can enumerate all loaded dependencies via `Gem::Specification`, and then download them from https://rubygems.org via API:
 
 ```ruby
-data = [File.read(__FILE__)]
-
-Gem::Specification.each do |spec|
+def download_gem(name)
   response = Faraday.get(
-    "https://rubygems.org/downloads/#{spec.full_name}.gem",
+    "https://rubygems.org/downloads/#{name}.gem",
     {},
     user_agent: "ServiceModel-Librarian/1.0"
   )
-  raise "Failed to download a gem for archival: #{spec.full_name}" unless response.success?
+  raise "Failed to download: #{spec.full_name}" unless response.success?
 
-  data << response.body
+  response.body
+end
+
+data = [File.read(__FILE__)]
+
+Gem::Specification.each do |spec|
+  data << download_gem(spec.full_name)
 end
 ```
 
