@@ -13,9 +13,11 @@
       {{- $handle := index site.Params.social . }}
       {{- $url := printf `https://%s.com/%s` . $handle }}
       {{- $rel := "me" }}
+      {{- $ariaLabel := printf `Follow me on %s: %s` . $handle }}
 
       {{- if eq . `rss` }}
       {{- $url = `index.xml` | absURL }}
+      {{- $ariaLabel = `Subscribe to the RSS feed` }}
       {{- $rel = "" }}
       {{- else if eq . `linkedin` }}
       {{- $url = printf `https://%s.com/in/%s` . $handle }}
@@ -26,9 +28,10 @@
       {{- $url = printf `https://%s/@%s` $mastodonSite $mastodonHandle }}
       {{- else if eq . `mail` }}
       {{- $url = printf `mailto:%s` $handle }}
+      {{- $ariaLabel = printf `Send me an email at %s` $handle }}
       {{- $rel = "" }}
       {{- end }}
-      <a class="online-{{ . }}" href="{{ $url }}" target="_blank"{{ with $rel }} rel="{{ . }}"{{ end }}>
+      <a class="online-{{ . }}" href="{{ $url }}" target="_blank"{{ with $rel }} rel="{{ . }}"{{ end }} aria-label="{{ $ariaLabel }}">
         {{ partial "svg.html" ( cond (eq . "twitter") "x" . ) }}
       </a>
       {{- end }}<!---->
