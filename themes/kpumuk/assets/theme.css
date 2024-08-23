@@ -536,6 +536,9 @@ a:hover {
   text-decoration: underline double;
   -webkit-text-decoration: underline double;
 }
+.article-list article footer a {
+  color: var(--accent-color);
+}
 
 code {
   display: inline-block;
