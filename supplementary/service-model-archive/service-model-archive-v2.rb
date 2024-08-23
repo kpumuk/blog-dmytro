@@ -23,7 +23,7 @@ def download_gem(name)
 end
 
 data = [File.read(__FILE__)]
-sorted_data = nil
+sorted = nil
 
 Benchmark.bm do |x|
   x.report("download:") do
@@ -42,7 +42,7 @@ Benchmark.bm do |x|
   end
 
   x.report("    sort:") do
-    sorted_data = data.join
+    sorted = data.join
       .unpack("B*")               # take bits
       .map { _1.chars.sort.join } # sort them bits
       .pack("B*")                 # pack to bytes
@@ -52,8 +52,8 @@ end
 puts <<~MSG
   \nResults:
       Original: #{data.sum { _1.size }} bytes in #{data.count} pieces
-        Sorted: #{sorted_data.size} bytes
-      Archived: #{Zlib.deflate(sorted_data).size} bytes
-           25%: #{sorted_data[(sorted_data.size * 0.25).to_i].unpack("B*").first}
-           75%: #{sorted_data[(sorted_data.size * 0.75).to_i].unpack("B*").first}
+        Sorted: #{sorted.size} bytes
+      Archived: #{Zlib.deflate(sorted).size} bytes
+           25%: #{sorted[(sorted.size * 0.25).to_i].unpack("B*").first}
+           75%: #{sorted[(sorted.size * 0.75).to_i].unpack("B*").first}
 MSG

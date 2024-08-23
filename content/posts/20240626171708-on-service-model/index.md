@@ -88,7 +88,7 @@ All we need to do now is to sort those bits:
 The full sorting algorithm looks like this:
 
 ```ruby
-sorted_data = data.join
+sorted = data.join
   .unpack("B*")               # take bits
   .map { _1.chars.sort.join } # sort them bits
   .pack("B*")                 # pack into bytes
