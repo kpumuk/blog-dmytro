@@ -10,7 +10,7 @@
 <!-- Blog Title -->
 {{ if eq .Type "posts" }}
 <header>
-  <h1>All writings by {{ site.Author.name }}</h1>
+  <h1>All writings by {{ site.Params.author.name }}</h1>
 </header>
 {{ end }}
 
@@ -24,7 +24,7 @@
 <header>
   <h1>{{ site.Title }}</h1>
   <p class="subheading">
-    {{ site.Params.bio | default (print "Personal blog by " site.Author.name) }}
+    {{ site.Params.author.bio | default (print "Personal blog by " site.Params.author.name) }}
   </p>
 </header>
 {{ end -}}

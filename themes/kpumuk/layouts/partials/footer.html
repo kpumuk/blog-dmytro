@@ -10,7 +10,7 @@
     {{- with $.Scratch.Get "social_list" }}
     <nav class="online">
       {{- range . }}<!---->
-      {{- $handle := site.Param . }}
+      {{- $handle := index site.Params.social . }}
       {{- $url := printf `https://%s.com/%s` . $handle }}
       {{- $rel := "me" }}
 
