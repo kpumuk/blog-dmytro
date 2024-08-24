@@ -102,7 +102,7 @@ Let's put it all together and add some benchmarking:
 
 Here is what we see when the script is run:
 
-```
+```plain
 $ ruby service-model-archive-v1.rb
                user     system      total        real
 download:  0.021359   0.010195   0.031554 (  0.296913)
