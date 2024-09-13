@@ -34,10 +34,14 @@ email = "hi@dmytro.sh"
 bio = "Welcome to my corner of the Internet, where I write about things that interest me."
 
 [markup]
+defaultMarkdownHandler = "goldmark"
 
 [markup.highlight]
 noClasses = false
 tabWidth = 4
+
+[markup.goldmark.extensions.extras.superscript]
+enable = true
 
 [frontmatter]
 # https://gohugo.io/getting-started/configuration/#configure-dates
