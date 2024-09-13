@@ -3,7 +3,7 @@ title = "On dangers of Open3.popen3"
 subtitle = "how to avoid deadlocks when reading from a process"
 slug = "on-dangers-of-open3-popen3"
 date = 2024-08-27T16:56:43-04:00
-publishDate = 2024-08-27T16:56:43-04:00
+publishDate = 2024-09-12T22:58:05-04:00
 tags = ["ruby"]
 +++
 
