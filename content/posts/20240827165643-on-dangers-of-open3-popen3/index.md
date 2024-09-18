@@ -49,7 +49,7 @@ As I mentioned before, in some cases when the process is chatty and generates a 
 
 {{< figure lightsrc="open3-deadlock-light.svg" darksrc="open3-deadlock-dark.svg" caption="Deadlock when reading from from one channel at a time" >}}
 
-In the example above, child process is trying to write more data into stderr, but there is no more room left in the buffer. Parent process have read everything from stdout and is waiting for more data or until the child process exits, and the child is blocked trying to write to stderr — a deadlock.
+In the example above, the child process is trying to write more data into stderr, but there is no more room left in the buffer. The parent process has read everything from stdout and is waiting for more data or until the child process exits, and the child is blocked trying to write to stderr — leading to a deadlock.
 
 ## Measuring the buffer size
 
