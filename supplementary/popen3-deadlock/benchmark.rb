@@ -16,22 +16,12 @@ def popen3_read_nonblock(cmd, opts = {})
     readables = [o, e]
     stdout = []
     stderr = []
-    while !readables.empty?
+    until readables.empty?
       readable, = IO.select(readables)
-      if readable.include?(o)
-        begin
-          stdout << o.read_nonblock(4096)
-        rescue EOFError
-          readables.delete(o)
-        end
-      end
-      if readable.include?(e)
-        begin
-          stderr << e.read_nonblock(4096)
-        rescue EOFError
-          readables.delete(e)
-        end
-      end
+
+      stdout << o.read_nonblock(4096, exception: false) if readable.include?(o)
+      stderr << e.read_nonblock(4096, exception: false) if readable.include?(e)
+      readables.reject!(&:eof?)
     end
     [stdout.join, stderr.join, t.value]
   end
@@ -41,14 +31,14 @@ GC.disable
 
 Benchmark.bm(15) do |x|
   x.report("threads:") do
-    popen3_threads("ruby ./generate.rb")
+    popen3_threads("ruby #{__dir__}/generate.rb")
   end
 
   x.report("read_nonblock:") do
-    popen3_read_nonblock("ruby ./generate.rb")
+    popen3_read_nonblock("ruby #{__dir__}/generate.rb")
   end
 
   x.report("capture3:") do
-    Open3.capture3("ruby ./generate.rb")
+    Open3.capture3("ruby #{__dir__}/generate.rb")
   end
 end

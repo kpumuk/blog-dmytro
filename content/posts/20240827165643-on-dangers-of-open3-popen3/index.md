@@ -142,7 +142,7 @@ Open3.popen3(*cmd, opts) do |i, o, e, t|
   readables = [o, e]
   stdout = []
   stderr = []
-  while !readables.empty?
+  until readables.empty?
     readable, = IO.select(readables)
     if readable.include?(o)
       begin
@@ -164,6 +164,25 @@ end
 ```
 
 Here we wait for data to appear in any of the streams and then read from them in chunks of up to 4096 bytes at a time. Once the stream reaches the end, an `EOFError` is thrown, at which point we stop selecting the corresponding stream.
+
+`IO#read_nonblock` accepts optional `exception: false` to return symbols instead of exceptions, or `nil` on EOF. Because we make sure there is data on the IO, we are guaranteed to never receive a symbol `:wait_readable`, and `nil` is not a problem for the later `join`. This can simplify our code:
+
+```ruby
+Open3.popen3(*cmd, opts) do |i, o, e, t|
+  i.close
+  readables = [o, e]
+  stdout = []
+  stderr = []
+  until readables.empty?
+    readable, = IO.select(readables)
+
+    stdout << o.read_nonblock(4096, exception: false) if readable.include?(o)
+    stderr << e.read_nonblock(4096, exception: false) if readable.include?(e)
+    readables.reject!(&:eof?)
+  end
+  [stdout.join, stderr.join, t.value]
+end
+```
 
 ### Benchmarking our solutions
 
@@ -222,4 +241,4 @@ Scripts used in this benchmark are available in the [blog repository](https://gi
 
 ## Change history
 
-- **2024-09-17** — Added a diagram for the conditions leading to a deadlock when reading from one channel at a time.
+- **2024-09-17** — Added a diagram for the conditions leading to a deadlock when reading from one channel at a time. Simplified non-blocking code using `exception: false` optional argument to `read_nonblock`.
