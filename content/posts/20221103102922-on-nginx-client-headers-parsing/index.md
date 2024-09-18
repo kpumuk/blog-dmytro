@@ -361,3 +361,4 @@ Thank you for sticking with me through the whole endeavor. Configuration files a
 ## Change history
 
 - **2022-11-18** — Added CPU usage graphs, and regenerated metrics data using custom tool [psbench](https://github.com/kpumuk/psbench).
+- **2024-09-17** — Updated memory layout diagram for better readability.
