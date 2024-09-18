@@ -33,6 +33,7 @@ html {
   --footer-text-color: #b4aaaa;
   --footer-link-color: #fea2a9;
   --nav-item-bg-color: rgb(239.58, 238.59, 232.63);
+  --shadow-color: #979797c0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -43,13 +44,14 @@ html {
     --bullet-color: #666666;
     --counter-bg-color: #a3a3a3;
     --code-bg-color: #293c50;
-    --code-text-color: c4c4c4;
+    --code-text-color: #c4c4c4;
     --pre-line-wrap-color: #595543;
     --table-border-color: #525252;
     --footer-bg-color: rgb(8.97, 11.53, 18.68);
     --footer-text-color: #b4aaaa;
     --footer-link-color: #fea2a9;
     --nav-item-bg-color: rgb(42.42, 45.62, 54.1);
+    --shadow-color: #131518c0;
   }
 }
 
@@ -255,17 +257,17 @@ article blockquote {
 }
 
 :not(.article-list) > article blockquote {
-    &::before {
-        content: '”';
-        color: var(--accent-color);
-        font-size: 72pt;
-        position: absolute;
-        top: -0.3em;
-        font-family: calluna, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
-        font-feature-settings: 'dlig';
-    }
+  &::before {
+    content: '”';
+    color: var(--accent-color);
+    font-size: 72pt;
+    position: absolute;
+    top: -0.3em;
+    font-family: calluna, ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+    font-feature-settings: 'dlig';
+  }
 
-    padding-top: 2rem;
+  padding-top: 2rem;
 }
 
 article pre {
@@ -398,12 +400,12 @@ figure > figcaption {
 }
 
 @media (min-width: 470px) {
-    figure.aside {
-        float: right;
-        width: 30%;
-        margin: 0 0 2rem 2rem;
-        min-width: 280px;
-    }
+  figure.aside {
+    float: right;
+    width: 30%;
+    margin: 0 0 2rem 2rem;
+    min-width: 280px;
+  }
 }
 
 footer .copyright {
@@ -605,4 +607,25 @@ footer.tags a {
   padding: 0.75rem 1.5rem;
   background-color: var(--nav-item-bg-color);
   border-radius: 1rem;
+}
+
+pre.chroma::before,
+pre.chroma::after {
+  content: '';
+  z-index: -2;
+  display: block;
+  position: absolute;
+  bottom: 0.75em;
+  left: 0.18em;
+  width: 40%;
+  height: 20%;
+  max-height: 13em;
+  box-shadow: 0 13px 8px var(--shadow-color);
+  transform: rotate(-1deg);
+}
+
+pre.chroma::after {
+  right: 0.75em;
+  left: auto;
+  transform: rotate(1deg);
 }
