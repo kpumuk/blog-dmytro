@@ -47,6 +47,10 @@ end
 
 As I mentioned before, in some cases when the process is chatty and generates a lot of output on one of the channels, a deadlock might occur. This happens because there is a buffer limit set on both of them, and once it is reached — the write operation will block, and the whole process will stall. If we're waiting to read on the second channel during that time, we will get a deadlock.
 
+{{< figure lightsrc="open3-deadlock-light.svg" darksrc="open3-deadlock-dark.svg" caption="Deadlock when reading from from one channel at a time" >}}
+
+In the example above, child process is trying to write more data into stderr, but there is no more room left in the buffer. Parent process have read everything from stdout and is waiting for more data or until the child process exits, and the child is blocked trying to write to stderr — a deadlock.
+
 ## Measuring the buffer size
 
 How do we measure the size of the buffer? Let's write a script that writes byte by byte into a requested stream and saves the number of bytes written into a file, so that it can be checked outside of the deadlocked process.
@@ -215,3 +219,7 @@ Non-blocking reading is the definitive winner here, but the code is significantl
 Inter-process communication is hard, and we should be extra careful when dealing with it. It was a fun exploration for me writing this post, but when I hit a deadlock in production running ffmpeg on a corrupted video file, or a stalled MySQL backup caused by excessive stderr output, those memories will haunt me till the end of my days. Remember to read simultaneously from both inputs, and you might never see this problem in your programs.
 
 Scripts used in this benchmark are available in the [blog repository](https://github.com/kpumuk/blog-dmytro/tree/main/supplementary/popen3-deadlock/).
+
+## Change history
+
+- **2024-09-17** — Added a diagram for the conditions leading to a deadlock when reading from one channel at a time.
