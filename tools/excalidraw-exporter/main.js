@@ -68,6 +68,7 @@ async function replaceFonts(svg) {
   svg = await replaceFont(svg, "Virgil");
   svg = await replaceFont(svg, "Cascadia");
   svg = await replaceFont(svg, "Assistant", "Assistant-Regular");
+  svg = await replaceFont(svg, "Excalifont");
   return svg;
 }
 
