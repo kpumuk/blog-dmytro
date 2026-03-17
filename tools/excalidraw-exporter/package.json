@@ -2,15 +2,27 @@
   "name": "excalidraw-exporter",
   "description": "CLI to export Excalidraw drawings to SVG",
   "version": "1.0.0",
+  "type": "module",
   "bin": "./main.js",
   "license": "GPL-3.0-only",
   "dependencies": {
-    "@excalidraw/excalidraw": "^0.17.6",
+    "@excalidraw/excalidraw": "^0.18.0",
     "canvas": "^3.1.0",
     "jsdom": "^26.0.0",
     "path2d": "^0.2.2",
+    "points-on-curve": "^1.0.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "roughjs": "^4.6.6"
   },
-  "packageManager": "yarn@4.2.2"
+  "resolutions": {
+    "points-on-curve": "1.0.1",
+    "roughjs": "4.6.6"
+  },
+  "packageManager": "yarn@4.2.2",
+  "scripts": {
+    "postinstall": "node ./symlink-roughjs.js",
+    "run": "node ./main.js",
+    "test": "node --test ./main.test.js"
+  }
 }
