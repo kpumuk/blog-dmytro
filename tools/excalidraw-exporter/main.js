@@ -26,6 +26,10 @@ const packagedFontsDir = path.join(
   "fonts"
 );
 const svgNs = "http://www.w3.org/2000/svg";
+const exportBackgroundColors = {
+  light: "#fffef8",
+  dark: "#1f222a",
+};
 const googleFontsRanges = {
   CYRILIC:
     "U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116",
@@ -315,7 +319,18 @@ const buildFontFaceCss = (fontFamilies, fontUrlPrefix) =>
     )
     .join("\n");
 
-const materializeFontAssets = async ({ svg, css }) => {
+const applyBackgroundColor = ({ root, backgroundColor }) => {
+  if (!backgroundColor) {
+    return;
+  }
+  const existingStyle = root.getAttribute("style");
+  const nextStyle = [existingStyle, `background-color: ${backgroundColor}`]
+    .filter(Boolean)
+    .join("; ");
+  root.setAttribute("style", nextStyle);
+};
+
+const materializeFontAssets = async ({ svg, css, backgroundColor }) => {
   const dom = new JSDOM(svg, { contentType: "image/svg+xml" });
   const document = dom.window.document;
   const root = document.documentElement;
@@ -338,6 +353,33 @@ const materializeFontAssets = async ({ svg, css }) => {
   }
 
   style.textContent = css;
+
+  const rootFilter = root.getAttribute("filter");
+  if (rootFilter) {
+    root.removeAttribute("filter");
+
+    const sceneGroup = document.createElementNS(svgNs, "g");
+    sceneGroup.setAttribute("filter", rootFilter);
+
+    for (const node of [...root.childNodes]) {
+      if (node.nodeType === document.COMMENT_NODE) {
+        continue;
+      }
+      if (
+        node.nodeType === document.ELEMENT_NODE &&
+        ["defs", "metadata"].includes(node.tagName)
+      ) {
+        continue;
+      }
+      sceneGroup.appendChild(node);
+    }
+
+    if (sceneGroup.childNodes.length > 0) {
+      root.appendChild(sceneGroup);
+    }
+  }
+
+  applyBackgroundColor({ root, backgroundColor });
 
   return root.outerHTML;
 };
@@ -399,6 +441,9 @@ export const convert = async (
   const svg = await materializeFontAssets({
     svg: svgElement.outerHTML,
     css: buildFontFaceCss(usedFontFamilies, fontUrlPrefix),
+    backgroundColor: darkMode
+      ? exportBackgroundColors.dark
+      : exportBackgroundColors.light,
   });
 
   await fs.writeFile(outputFile, svg, "utf8");

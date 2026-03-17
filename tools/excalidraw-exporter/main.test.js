@@ -44,8 +44,28 @@ test("convert rewrites embedded fonts to local font assets", async () => {
   assert.doesNotMatch(svg, /font-family="Virgil,/);
   assert.doesNotMatch(svg, /font-family="Helvetica,/);
   assert.doesNotMatch(svg, /font-family="Cascadia,/);
+  assert.match(svg, /<svg[^>]*style="[^"]*background-color:\s*#fffef8/);
 
   for (const fontFile of linkedFonts) {
     await fs.access(path.join(tempFontDir, fontFile));
   }
+});
+
+test("convert keeps dark-mode filter off the root svg", async () => {
+  const tempRoot = await fs.mkdtemp(
+    path.join(os.tmpdir(), "excalidraw-exporter-")
+  );
+  const tempInput = path.join(tempRoot, "open3-deadlock.excalidraw");
+
+  await fs.copyFile(sampleInput, tempInput);
+  await convert(tempInput, { darkMode: true });
+
+  const svg = await fs.readFile(
+    path.join(tempRoot, "open3-deadlock-dark.svg"),
+    "utf8"
+  );
+
+  assert.doesNotMatch(svg, /<svg[^>]*\sfilter="/);
+  assert.match(svg, /<svg[^>]*style="[^"]*background-color:\s*#1f222a/);
+  assert.match(svg, /<g filter="invert\(93%\) hue-rotate\(180deg\)">/);
 });
