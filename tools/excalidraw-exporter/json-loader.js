@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import path from "node:path";
 
 const laserPointerUrl = new URL(
   "./node_modules/@excalidraw/laser-pointer/dist/esm.js",
@@ -11,6 +12,21 @@ export async function resolve(specifier, context, defaultResolve) {
       shortCircuit: true,
       url: laserPointerUrl,
     };
+  }
+
+  if (
+    specifier.startsWith("roughjs/bin/") &&
+    !path.extname(specifier)
+  ) {
+    return defaultResolve(`${specifier}.js`, context, defaultResolve);
+  }
+
+  if (
+    (specifier.startsWith("./") || specifier.startsWith("../")) &&
+    !path.extname(specifier) &&
+    context.parentURL?.includes("/roughjs/bin/")
+  ) {
+    return defaultResolve(`${specifier}.js`, context, defaultResolve);
   }
 
   return defaultResolve(specifier, context, defaultResolve);

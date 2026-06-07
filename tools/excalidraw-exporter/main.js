@@ -6,9 +6,8 @@ import { register } from "node:module";
 import { performance as nodePerformance } from "node:perf_hooks";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { createCanvas, CanvasRenderingContext2D } from "canvas";
+import { createCanvas, Image, ImageData, Path2D } from "@napi-rs/canvas";
 import { JSDOM } from "jsdom";
-import { applyPath2DToCanvasRenderingContext, Path2D } from "path2d";
 
 register("./json-loader.js", import.meta.url);
 
@@ -26,8 +25,10 @@ const fontDataUrlPattern = /url\((['"]?)data:font\/woff2;base64,([^)'"]+)\1\)/g;
 
 let excalidrawModulePromise;
 let globalsInstalled = false;
+const backingCanvas = Symbol("backingCanvas");
 
-applyPath2DToCanvasRenderingContext(CanvasRenderingContext2D);
+const CanvasRenderingContext2D = createCanvas(1, 1).getContext("2d")
+  .constructor;
 
 const installGlobal = (key, value) => {
   if (value === undefined) {
@@ -92,8 +93,36 @@ const ensureGlobals = () => {
     }
   };
 
+  const getBackingCanvas = (canvasElement) => {
+    const width = canvasElement.width || 300;
+    const height = canvasElement.height || 150;
+    let canvas = canvasElement[backingCanvas];
+
+    if (!canvas || canvas.width !== width || canvas.height !== height) {
+      canvas = createCanvas(width, height);
+      canvasElement[backingCanvas] = canvas;
+    }
+
+    return canvas;
+  };
+
+  window.HTMLCanvasElement.prototype.getContext = function getContext(
+    contextId,
+    ...args
+  ) {
+    if (contextId !== "2d") {
+      return null;
+    }
+
+    return getBackingCanvas(this).getContext("2d", ...args);
+  };
+  window.HTMLCanvasElement.prototype.toDataURL = function toDataURL(...args) {
+    return getBackingCanvas(this).toDataURL(...args);
+  };
+
   window.CanvasRenderingContext2D = CanvasRenderingContext2D;
   window.FontFace = FontFace;
+  window.ImageData = ImageData;
   window.Path2D = Path2D;
   window.requestAnimationFrame ??= (callback) =>
     setTimeout(() => callback(Date.now()), 0);
@@ -131,8 +160,8 @@ const ensureGlobals = () => {
   installGlobal("XMLSerializer", window.XMLSerializer);
   installGlobal("HTMLCanvasElement", window.HTMLCanvasElement);
   installGlobal("HTMLImageElement", window.HTMLImageElement);
-  installGlobal("Image", window.Image);
-  installGlobal("ImageData", window.ImageData);
+  installGlobal("Image", Image);
+  installGlobal("ImageData", ImageData);
   installGlobal("Blob", window.Blob);
   installGlobal("File", window.File);
   installGlobal("FileReader", window.FileReader);

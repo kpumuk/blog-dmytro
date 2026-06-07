@@ -7,4 +7,4 @@ repo_root=$(cd "${script_dir}/.." && pwd)
 exporter_dir="${repo_root}/tools/excalidraw-exporter"
 
 find "${PWD}" -type f -iname '*.excalidraw' \
-    -exec bash -lc 'cd "$1" && yarn exec excalidraw-exporter "$2"' _ "${exporter_dir}" '{}' \;
+    -exec bash -lc 'cd "$1" && pnpm exec node ./main.js "$2"' _ "${exporter_dir}" '{}' \;
