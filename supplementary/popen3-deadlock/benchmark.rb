@@ -19,9 +19,23 @@ def popen3_read_nonblock(cmd, opts = {})
     until readables.empty?
       readable, = IO.select(readables)
 
-      stdout << o.read_nonblock(4096, exception: false) if readable.include?(o)
-      stderr << e.read_nonblock(4096, exception: false) if readable.include?(e)
-      readables.reject!(&:eof?)
+      if readable.include?(o)
+        chunk = o.read_nonblock(4096, exception: false)
+        if chunk.nil?
+          readables.delete(o)
+        elsif chunk != :wait_readable
+          stdout << chunk
+        end
+      end
+
+      if readable.include?(e)
+        chunk = e.read_nonblock(4096, exception: false)
+        if chunk.nil?
+          readables.delete(e)
+        elsif chunk != :wait_readable
+          stderr << chunk
+        end
+      end
     end
     [stdout.join, stderr.join, t.value]
   end
