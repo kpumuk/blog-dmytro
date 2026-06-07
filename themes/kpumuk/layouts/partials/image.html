@@ -1,6 +1,6 @@
 {{- $size := partial "image-size" .Image }}
 {{- if eq .Image.MediaType.SubType "svg"}}
-    {{ $style := print "padding-top: calc(min(" $size.Height "px, " (mul $size.HRatio 100) "%));"}}
+    {{ $style := print "padding-top: calc(min(" $size.Height "px, " (mul $size.HRatio 100) "%)); max-width: " $size.Width "px;"}}
     <div class="container-svg {{ .Class }}" style="{{ $style | safeCSS }}">
         <object data="{{ .Image.RelPermalink }}" type="image/svg+xml" loading="lazy"
             {{- with .Width }} width="{{ . }}"{{ else }} width="{{ $size.Width }}"{{ end -}}

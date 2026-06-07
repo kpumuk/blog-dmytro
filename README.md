@@ -45,6 +45,8 @@ asdf latest hugo
    {{< figure lightsrc="/images/diagram-light.svg" darksrc="/images/diagram-dark.svg" >}}
    ```
 
+Generated SVGs use self-hosted font subsets from `static/fonts/excalidraw/generated/`. Those files are written by `tools/excalidraw-exporter/main.js` from Excalidraw's SVG font export output as content-addressed WOFF2 assets, so SVGs can reference local fonts instead of embedding `data:` fonts.
+
 ## Twitter Cards
 
 Most of the graphics in the blog should be created in SVG, as it allows scaling for different devices. Unfortunately, Twitter only supports JPG, PNG, WEBP and GIF formats. In order to convert svg to another format, use a CLI conversion tool from Inkscape:
