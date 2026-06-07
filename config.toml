@@ -1,5 +1,5 @@
 baseURL = "https://dmytro.sh/"
-languageCode = "en-us"
+locale = "en-us"
 title = "Dmytro on Things"
 theme = "kpumuk"
 rssLimit = 20
