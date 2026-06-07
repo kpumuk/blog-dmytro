@@ -165,7 +165,7 @@ end
 
 Here we wait for data to appear in any of the streams and then read from them in chunks of up to 4096 bytes at a time. Once the stream reaches the end, an `EOFError` is thrown, at which point we stop selecting the corresponding stream.
 
-`IO#read_nonblock` accepts optional `exception: false` to return symbols instead of exceptions, or `nil` on EOF. Because we make sure there is data on the IO, we are guaranteed to never receive a symbol `:wait_readable`, and `nil` is not a problem for the later `join`. This can simplify our code:
+`IO#read_nonblock` accepts optional `exception: false` to return symbols instead of exceptions, or `nil` on EOF. We still need to be careful to only make decisions based on the streams returned by `IO.select`. Calling `eof?` on a pipe that was not selected as readable can block until the child process writes to that pipe or closes it.
 
 ```ruby
 Open3.popen3(*cmd, opts) do |i, o, e, t|
@@ -176,13 +176,29 @@ Open3.popen3(*cmd, opts) do |i, o, e, t|
   until readables.empty?
     readable, = IO.select(readables)
 
-    stdout << o.read_nonblock(4096, exception: false) if readable.include?(o)
-    stderr << e.read_nonblock(4096, exception: false) if readable.include?(e)
-    readables.reject!(&:eof?)
+    if readable.include?(o)
+      chunk = o.read_nonblock(4096, exception: false)
+      if chunk.nil?
+        readables.delete(o)
+      elsif chunk != :wait_readable
+        stdout << chunk
+      end
+    end
+
+    if readable.include?(e)
+      chunk = e.read_nonblock(4096, exception: false)
+      if chunk.nil?
+        readables.delete(e)
+      elsif chunk != :wait_readable
+        stderr << chunk
+      end
+    end
   end
   [stdout.join, stderr.join, t.value]
 end
 ```
+
+In the usual path after `IO.select`, `:wait_readable` should not be returned, but handling it keeps the loop honest: data is appended only when we actually read data, and a stream is removed only when the read on that same stream returns `nil` for EOF.
 
 ### Benchmarking our solutions
 
@@ -241,4 +257,5 @@ Scripts used in this benchmark are available in the [blog repository](https://gi
 
 ## Change history
 
+- **2026-06-07** — Fixed a blocking bug in the `read_nonblock(exception: false)` example with a child process that writes only to stderr. The previous simplified version called `readables.reject!(&:eof?)` after every `IO.select`. That was wrong because `IO#eof?` is not a non-blocking readiness check for pipes: if stdout is still open but has not produced data, `stdout.eof?` may block until the child writes to stdout or exits. In a process that writes only to stderr, this turns the parent loop into "read one stderr chunk, then wait for stdout to close", so stderr is no longer drained while the child is running. With enough stderr output, that can recreate the very deadlock the article is trying to avoid. The fix is to treat `read_nonblock(..., exception: false)` returning `nil` as EOF for the selected stream, and remove only that stream from the `readables` list.
 - **2024-09-17** — Added a diagram for the conditions leading to a deadlock when reading from one channel at a time. Simplified non-blocking code using `exception: false` optional argument to `read_nonblock`.
