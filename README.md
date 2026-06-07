@@ -24,15 +24,15 @@ This command will update `themes/kpumuk/assets/syntax.css` with syntax colors fo
 
 ## Hugo Version
 
-Hugo version is installed via asdf in `.tool-versions`, and enforced on Netlify via `netlify.toml`. **Update in both places!**
+Hugo version is installed via mise in `.tool-versions`, and enforced on Netlify via `netlify.toml`. **Update in both places!**
 
-To install [asdf-hugo](https://github.com/nklmilojevic/asdf-hugo) plugin, run:
+To install the pinned Hugo version, run:
 
 ```bash
-asdf plugin add hugo https://github.com/nklmilojevic/asdf-hugo.git
+mise install
 
 # Get latest Hugo version
-asdf latest hugo
+mise latest aqua:gohugoio/hugo
 ```
 
 ## Excalidraw Diagrams
