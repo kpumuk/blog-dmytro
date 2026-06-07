@@ -1,0 +1,17 @@
+packages:
+  - .
+  - stubs/*
+
+autoInstallPeers: false
+
+overrides:
+  "@excalidraw/mermaid-to-excalidraw": file:./stubs/mermaid-to-excalidraw
+  nanoid@3.3.3: 3.3.11
+
+minimumReleaseAge: 10080
+
+strictDepBuilds: true
+
+allowBuilds:
+  core-js: false
+  core-js-pure: false
