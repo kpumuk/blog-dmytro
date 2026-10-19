@@ -6,7 +6,9 @@ autoInstallPeers: false
 
 overrides:
   "@excalidraw/mermaid-to-excalidraw": file:./stubs/mermaid-to-excalidraw
-  nanoid@3.3.3: 3.3.11
+  # Excalidraw ships compiled CSS; its Sass build dependency is unused here.
+  "@excalidraw/excalidraw@0.18.1>sass": "-"
+  nanoid@3.3.3: 3.3.20
 
 minimumReleaseAge: 10080
 
