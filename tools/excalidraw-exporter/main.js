@@ -25,7 +25,6 @@ const fontDataUrlPattern = /url\((['"]?)data:font\/woff2;base64,([^)'"]+)\1\)/g;
 
 let excalidrawModulePromise;
 let globalsInstalled = false;
-const backingCanvas = Symbol("backingCanvas");
 
 const CanvasRenderingContext2D = createCanvas(1, 1).getContext("2d")
   .constructor;
@@ -91,33 +90,6 @@ const ensureGlobals = () => {
     async load() {
       return this;
     }
-  };
-
-  const getBackingCanvas = (canvasElement) => {
-    const width = canvasElement.width || 300;
-    const height = canvasElement.height || 150;
-    let canvas = canvasElement[backingCanvas];
-
-    if (!canvas || canvas.width !== width || canvas.height !== height) {
-      canvas = createCanvas(width, height);
-      canvasElement[backingCanvas] = canvas;
-    }
-
-    return canvas;
-  };
-
-  window.HTMLCanvasElement.prototype.getContext = function getContext(
-    contextId,
-    ...args
-  ) {
-    if (contextId !== "2d") {
-      return null;
-    }
-
-    return getBackingCanvas(this).getContext("2d", ...args);
-  };
-  window.HTMLCanvasElement.prototype.toDataURL = function toDataURL(...args) {
-    return getBackingCanvas(this).toDataURL(...args);
   };
 
   window.CanvasRenderingContext2D = CanvasRenderingContext2D;
