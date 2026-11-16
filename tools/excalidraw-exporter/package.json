@@ -15,7 +15,7 @@
     "react-dom": "^18.3.1",
     "roughjs": "^4.6.6"
   },
-  "packageManager": "pnpm@10.34.1",
+  "packageManager": "pnpm@12.21.0",
   "scripts": {
     "run": "node ./main.js",
     "test": "node --test ./main.test.js"
