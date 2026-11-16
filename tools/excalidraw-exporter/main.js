@@ -2,14 +2,15 @@
 
 import { promises as fs } from "node:fs";
 import { createHash } from "node:crypto";
-import { register } from "node:module";
+import { registerHooks } from "node:module";
 import { performance as nodePerformance } from "node:perf_hooks";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createCanvas, Image, ImageData, Path2D } from "@napi-rs/canvas";
 import { JSDOM } from "jsdom";
+import { load, resolve } from "./json-loader.js";
 
-register("./json-loader.js", import.meta.url);
+registerHooks({ load, resolve });
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
