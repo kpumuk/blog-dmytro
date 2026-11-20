@@ -51,6 +51,44 @@ test("convert rewrites embedded fonts to local font assets", async () => {
   }
 });
 
+test("convert measures text with Excalidraw's fonts, not the OS fonts", async () => {
+  const tempRoot = await fs.mkdtemp(
+    path.join(os.tmpdir(), "excalidraw-exporter-")
+  );
+  const tempInput = path.join(tempRoot, "open3-deadlock.excalidraw");
+
+  await fs.copyFile(sampleInput, tempInput);
+  await convert(tempInput, {
+    darkMode: false,
+    fontOutputDir: path.join(tempRoot, "fonts"),
+  });
+
+  const svg = await fs.readFile(
+    path.join(tempRoot, "open3-deadlock-light.svg"),
+    "utf8"
+  );
+  // Each text element is a group rotated around its center, so its width is
+  // twice the center's x offset.
+  const svgWidths = new Map(
+    [...svg.matchAll(/rotate\(0 ([\d.]+) [\d.]+\)"><text[^>]*>([^<]*)</g)].map(
+      ([, centerX, firstLine]) => [firstLine, 2 * Number(centerX)]
+    )
+  );
+  // Excalidraw in the browser measured these widths with the same fonts.
+  const { elements } = JSON.parse(await fs.readFile(sampleInput, "utf8"));
+  const texts = elements.filter((element) => element.type === "text");
+
+  assert.ok(texts.length > 0);
+  for (const { text, width } of texts) {
+    const [firstLine] = text.split("\n");
+    assert.ok(svgWidths.has(firstLine), `no SVG text for ${firstLine}`);
+    assert.ok(
+      Math.abs(svgWidths.get(firstLine) - width) < 0.01,
+      `${firstLine}: ${svgWidths.get(firstLine)} != ${width}`
+    );
+  }
+});
+
 test("convert keeps dark-mode filter off the root svg", async () => {
   const tempRoot = await fs.mkdtemp(
     path.join(os.tmpdir(), "excalidraw-exporter-")

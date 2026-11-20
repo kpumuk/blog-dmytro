@@ -1,12 +1,18 @@
 #!/usr/bin/env node
 
-import { promises as fs } from "node:fs";
+import { promises as fs, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { registerHooks } from "node:module";
 import { performance as nodePerformance } from "node:perf_hooks";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { createCanvas, Image, ImageData, Path2D } from "@napi-rs/canvas";
+import {
+  createCanvas,
+  GlobalFonts,
+  Image,
+  ImageData,
+  Path2D,
+} from "@napi-rs/canvas";
 import { JSDOM } from "jsdom";
 import { load, resolve } from "./json-loader.js";
 
@@ -17,12 +23,26 @@ const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..", "..");
 const defaultFontOutputDir = path.join(repoRoot, "static", "fonts", "excalidraw");
 const defaultFontUrlPrefix = "/fonts/excalidraw";
+const excalidrawDistDir = path.dirname(
+  fileURLToPath(import.meta.resolve("@excalidraw/excalidraw"))
+);
 const svgNs = "http://www.w3.org/2000/svg";
 const exportBackgroundColors = {
   light: "#fffef8",
   dark: "#1f222a",
 };
 const fontDataUrlPattern = /url\((['"]?)data:font\/woff2;base64,([^)'"]+)\1\)/g;
+// Font directories shipped in @excalidraw/excalidraw, keyed by the family name
+// Excalidraw puts in ctx.font. Legacy Virgil, Helvetica and Cascadia text is
+// remapped before measuring, so their fonts are not needed.
+const excalidrawFontDirs = {
+  Excalifont: "Excalifont",
+  Xiaolai: "Xiaolai",
+  Nunito: "Nunito",
+  "Lilita One": "Lilita",
+  "Comic Shanns": "ComicShanns",
+  "Liberation Sans": "Liberation",
+};
 
 let excalidrawModulePromise;
 let globalsInstalled = false;
@@ -41,10 +61,27 @@ const installGlobal = (key, value) => {
   });
 };
 
+// Excalidraw measures text with the canvas to size text elements. Without its
+// fonts registered, the canvas measures with whatever fonts the OS has, and
+// text positions in the SVG differ between machines.
+const registerExcalidrawFonts = () => {
+  for (const [family, dir] of Object.entries(excalidrawFontDirs)) {
+    const fontDir = path.join(excalidrawDistDir, "fonts", dir);
+    // Sorted so a glyph found in several subsets resolves the same everywhere.
+    for (const file of readdirSync(fontDir).sort()) {
+      if (!GlobalFonts.registerFromPath(path.join(fontDir, file), family)) {
+        throw new Error(`Cannot register font ${path.join(fontDir, file)}`);
+      }
+    }
+  }
+};
+
 const ensureGlobals = () => {
   if (globalsInstalled) {
     return;
   }
+
+  registerExcalidrawFonts();
 
   const dom = new JSDOM("", { url: "https://dmytro.sh" });
   const { window } = dom;
@@ -93,6 +130,15 @@ const ensureGlobals = () => {
     }
   };
 
+  const { getContext } = window.HTMLCanvasElement.prototype;
+  window.HTMLCanvasElement.prototype.getContext = function (...args) {
+    const context = getContext.apply(this, args);
+    // The default "inherit" follows the OS language, which can change glyphs.
+    if (context) {
+      context.lang = "en";
+    }
+    return context;
+  };
   window.CanvasRenderingContext2D = CanvasRenderingContext2D;
   window.FontFace = FontFace;
   window.ImageData = ImageData;
