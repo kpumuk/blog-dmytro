@@ -5,7 +5,7 @@ import { createHash } from "node:crypto";
 import { registerHooks } from "node:module";
 import { performance as nodePerformance } from "node:perf_hooks";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   createCanvas,
   GlobalFonts,
@@ -139,6 +139,16 @@ const ensureGlobals = () => {
     }
     return context;
   };
+  // Excalidraw fetches the fonts it subsets into SVGs from this path before
+  // falling back to esm.sh. Node's fetch cannot read file: URLs, so they are
+  // read here.
+  window.EXCALIDRAW_ASSET_PATH = pathToFileURL(excalidrawDistDir).href;
+  const networkFetch = globalThis.fetch;
+  installGlobal("fetch", async (resource, options) =>
+    String(resource).startsWith("file:")
+      ? new Response(await fs.readFile(new URL(resource)))
+      : networkFetch(resource, options)
+  );
   window.CanvasRenderingContext2D = CanvasRenderingContext2D;
   window.FontFace = FontFace;
   window.ImageData = ImageData;
